@@ -38,28 +38,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Update active nav link on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
 // Fetch and display data
 async function fetchDoblajes(category = 'Series') {
     // Map category names to their container IDs
@@ -92,6 +70,47 @@ async function fetchDoblajes(category = 'Series') {
 
     try {
         const response = await fetch(`${API_URL}/doblajes?category=${encodeURIComponent(category)}`);
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos');
+        }
+
+        const data = await response.json();
+        displayDoblajes(data, contentContainer);
+    } catch (error) {
+        console.error('Error:', error);
+        contentContainer.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    Error al cargar los datos. Por favor, asegúrate de que el servidor backend esté funcionando.
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Fetch and display important doblajes for Inicio page
+async function fetchImportantDoblajes() {
+    const contentContainer = document.getElementById('important-content');
+    
+    if (!contentContainer) {
+        console.error('Container not found: important-content');
+        return;
+    }
+    
+    // Show loading spinner
+    contentContainer.innerHTML = `
+        <div class="col-12">
+            <div class="spinner-container">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+    try {
+        const response = await fetch(`${API_URL}/doblajes?important=true`);
         
         if (!response.ok) {
             throw new Error('Error al cargar los datos');
@@ -169,27 +188,18 @@ categoryTabs.forEach(tab => {
     });
 });
 
-// Load initial data for Series
+// Load initial data based on current page
 document.addEventListener('DOMContentLoaded', () => {
-    fetchDoblajes('Series');
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            if (navbarCollapse.classList.contains('show')) {
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-                bsCollapse.hide();
-            }
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    if (currentPage === 'inicio.html' || currentPage === 'index.html' || currentPage === '') {
+        // Load important doblajes for Inicio page
+        if (document.getElementById('important-content')) {
+            fetchImportantDoblajes();
         }
-    });
+    } else if (currentPage === 'doblajes.html') {
+        // Load Series by default for Doblajes page
+        fetchDoblajes('Series');
+    }
+    // contacto.html doesn't need to fetch any data
 });

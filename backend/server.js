@@ -23,28 +23,29 @@ db.serialize(() => {
     category TEXT NOT NULL,
     image TEXT,
     video TEXT,
-    mainCharacter TEXT
+    mainCharacter TEXT,
+    important INTEGER DEFAULT 0
   )`);
 
   // Insert sample data if table is empty
   db.get('SELECT COUNT(*) as count FROM doblajes', (err, row) => {
     if (row.count === 0) {
       const sampleData = [
-        { title: 'Breaking Bad', year: 2008, category: 'Series', image: 'breaking-bad.jpg', video: '', mainCharacter: 'Walter White' },
-        { title: 'The Godfather', year: 1972, category: 'Películas', image: 'godfather.jpg', video: '', mainCharacter: 'Vito Corleone' },
-        { title: 'Planet Earth', year: 2006, category: 'Documentales', image: 'planet-earth.jpg', video: '', mainCharacter: 'Narrador' },
-        { title: 'Comercial Coca-Cola', year: 2022, category: 'Locuciones', image: 'coca-cola.jpg', video: '', mainCharacter: 'Voz en Off' },
-        { title: 'El Quijote', year: 2021, category: 'Audiolibros', image: 'quijote.jpg', video: '', mainCharacter: 'Don Quijote' },
-        { title: 'Game of Thrones', year: 2011, category: 'Series', image: 'got.jpg', video: '', mainCharacter: 'Tyrion Lannister' },
-        { title: 'Inception', year: 2010, category: 'Películas', image: 'inception.jpg', video: '', mainCharacter: 'Cobb' },
-        { title: 'Blue Planet II', year: 2017, category: 'Documentales', image: 'blue-planet.jpg', video: '', mainCharacter: 'Narrador' },
-        { title: 'Anuncio Nike', year: 2023, category: 'Locuciones', image: 'nike.jpg', video: '', mainCharacter: 'Voz en Off' },
-        { title: 'Harry Potter y la Piedra Filosofal', year: 2020, category: 'Audiolibros', image: 'harry-potter.jpg', video: '', mainCharacter: 'Harry Potter' }
+        { title: 'Breaking Bad', year: 2008, category: 'Series', image: 'breaking-bad.jpg', video: '', mainCharacter: 'Walter White', important: 1 },
+        { title: 'The Godfather', year: 1972, category: 'Películas', image: 'godfather.jpg', video: '', mainCharacter: 'Vito Corleone', important: 1 },
+        { title: 'Planet Earth', year: 2006, category: 'Documentales', image: 'planet-earth.jpg', video: '', mainCharacter: 'Narrador', important: 0 },
+        { title: 'Comercial Coca-Cola', year: 2022, category: 'Locuciones', image: 'coca-cola.jpg', video: '', mainCharacter: 'Voz en Off', important: 0 },
+        { title: 'El Quijote', year: 2021, category: 'Audiolibros', image: 'quijote.jpg', video: '', mainCharacter: 'Don Quijote', important: 1 },
+        { title: 'Game of Thrones', year: 2011, category: 'Series', image: 'got.jpg', video: '', mainCharacter: 'Tyrion Lannister', important: 1 },
+        { title: 'Inception', year: 2010, category: 'Películas', image: 'inception.jpg', video: '', mainCharacter: 'Cobb', important: 0 },
+        { title: 'Blue Planet II', year: 2017, category: 'Documentales', image: 'blue-planet.jpg', video: '', mainCharacter: 'Narrador', important: 1 },
+        { title: 'Anuncio Nike', year: 2023, category: 'Locuciones', image: 'nike.jpg', video: '', mainCharacter: 'Voz en Off', important: 1 },
+        { title: 'Harry Potter y la Piedra Filosofal', year: 2020, category: 'Audiolibros', image: 'harry-potter.jpg', video: '', mainCharacter: 'Harry Potter', important: 0 }
       ];
 
-      const stmt = db.prepare('INSERT INTO doblajes (title, year, category, image, video, mainCharacter) VALUES (?, ?, ?, ?, ?, ?)');
+      const stmt = db.prepare('INSERT INTO doblajes (title, year, category, image, video, mainCharacter, important) VALUES (?, ?, ?, ?, ?, ?, ?)');
       sampleData.forEach(item => {
-        stmt.run(item.title, item.year, item.category, item.image, item.video, item.mainCharacter);
+        stmt.run(item.title, item.year, item.category, item.image, item.video, item.mainCharacter, item.important);
       });
       stmt.finalize();
       console.log('Sample data inserted');
@@ -54,7 +55,7 @@ db.serialize(() => {
 
 // API endpoint with filters
 app.get('/api/doblajes', (req, res) => {
-  const { year, title, category } = req.query;
+  const { year, title, category, important } = req.query;
   
   let query = 'SELECT * FROM doblajes WHERE 1=1';
   const params = [];
@@ -72,6 +73,11 @@ app.get('/api/doblajes', (req, res) => {
   if (category) {
     query += ' AND category = ?';
     params.push(category);
+  }
+
+  if (important !== undefined) {
+    query += ' AND important = ?';
+    params.push(important === 'true' || important === '1' ? 1 : 0);
   }
 
   query += ' ORDER BY year DESC';

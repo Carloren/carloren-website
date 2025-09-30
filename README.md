@@ -9,14 +9,17 @@ Sitio web profesional en español para el actor de doblaje Carlos Lorenzo (Carlo
 ### Backend
 - API REST con Node.js y Express
 - Base de datos SQLite con tabla de doblajes
-- Propiedades: Title, Year, Category, Image, Video, MainCharacter
-- Endpoint con filtros por year, title y category
+- Propiedades: Title, Year, Category, Image, Video, MainCharacter, Important
+- Endpoint con filtros por year, title, category e important
 - Datos de ejemplo incluidos
 
 ### Frontend
-- Navbar responsivo con tres páginas: Inicio, Doblajes, Contacto
+- Tres páginas separadas: Inicio, Doblajes y Contacto
+- Navbar responsivo con navegación entre páginas
 - Botón de modo día/noche con iconos de Bootstrap
+- Página "Inicio" muestra trabajos destacados (filtrados por propiedad "important")
 - Página "Doblajes" con categorías: Series, Películas, Documentales, Locuciones, Audiolibros
+- Página "Contacto" con información de contacto y redes sociales
 - Tarjetas dinámicas que cargan información desde la API
 - Diseño completamente responsivo
 
@@ -48,7 +51,7 @@ El servidor estará corriendo en `http://localhost:3000`
 cd frontend
 ```
 
-2. Abrir el archivo `index.html` en un navegador, o usar un servidor HTTP local:
+2. Abrir el archivo `inicio.html` en un navegador, o usar un servidor HTTP local:
 ```bash
 # Con Python 3
 python3 -m http.server 8080
@@ -68,12 +71,14 @@ Obtiene la lista de doblajes con filtros opcionales.
 - `year` (opcional): Filtrar por año
 - `title` (opcional): Filtrar por título (búsqueda parcial)
 - `category` (opcional): Filtrar por categoría
+- `important` (opcional): Filtrar por trabajos destacados (true/false)
 
 **Ejemplo:**
 ```
 GET /api/doblajes?category=Series
 GET /api/doblajes?year=2020
 GET /api/doblajes?title=Breaking
+GET /api/doblajes?important=true
 ```
 
 ### GET /api/categories
@@ -88,7 +93,10 @@ carloren-website/
 │   ├── server.js
 │   └── database.db (se crea automáticamente)
 ├── frontend/
-│   ├── index.html
+│   ├── index.html (redirige a inicio.html)
+│   ├── inicio.html
+│   ├── doblajes.html
+│   ├── contacto.html
 │   ├── css/
 │   │   └── style.css
 │   ├── js/
@@ -102,4 +110,4 @@ carloren-website/
 
 - **Backend:** Node.js, Express, SQLite3
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, Bootstrap Icons
-- **Características:** API REST, Responsive Design, Dark Mode, SPA-like Navigation
+- **Características:** API REST, Responsive Design, Dark Mode, Multi-page Navigation

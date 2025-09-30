@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doblajes - Carloren</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="inicio.html">
+                <strong>CARLOREN</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="doblajes.html">Doblajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-link nav-link" id="themeToggle" aria-label="Toggle theme">
+                            <i class="bi bi-sun-fill" id="themeIcon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Doblajes Section -->
+    <section id="doblajes" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Mi Trabajo</h2>
+            
+            <!-- Category Tabs -->
+            <ul class="nav nav-pills justify-content-center mb-5" id="categoryTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="series-tab" data-bs-toggle="pill" data-bs-target="#series" 
+                            type="button" role="tab" data-category="Series">
+                        Series
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="peliculas-tab" data-bs-toggle="pill" data-bs-target="#peliculas" 
+                            type="button" role="tab" data-category="Películas">
+                        Películas
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="documentales-tab" data-bs-toggle="pill" data-bs-target="#documentales" 
+                            type="button" role="tab" data-category="Documentales">
+                        Documentales
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="locuciones-tab" data-bs-toggle="pill" data-bs-target="#locuciones" 
+                            type="button" role="tab" data-category="Locuciones">
+                        Locuciones
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="audiolibros-tab" data-bs-toggle="pill" data-bs-target="#audiolibros" 
+                            type="button" role="tab" data-category="Audiolibros">
+                        Audiolibros
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="categoryContent">
+                <div class="tab-pane fade show active" id="series" role="tabpanel">
+                    <div class="row" id="series-content"></div>
+                </div>
+                <div class="tab-pane fade" id="peliculas" role="tabpanel">
+                    <div class="row" id="peliculas-content"></div>
+                </div>
+                <div class="tab-pane fade" id="documentales" role="tabpanel">
+                    <div class="row" id="documentales-content"></div>
+                </div>
+                <div class="tab-pane fade" id="locuciones" role="tabpanel">
+                    <div class="row" id="locuciones-content"></div>
+                </div>
+                <div class="tab-pane fade" id="audiolibros" role="tabpanel">
+                    <div class="row" id="audiolibros-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Carloren - Carlos Lorenzo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+</html>

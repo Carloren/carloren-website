@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DubCard from './DubCard.jsx';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -6,6 +8,7 @@ function Inicio() {
   const [importantDoblajes, setImportantDoblajes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchImportantDoblajes();
@@ -30,17 +33,6 @@ function Inicio() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const escapeHtml = (text) => {
-    const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#039;'
-    };
-    return text ? text.replace(/[&<>"']/g, m => map[m]) : '';
   };
 
   return (
@@ -100,28 +92,16 @@ function Inicio() {
             )}
             
             {!loading && !error && importantDoblajes.map(item => (
-              <div key={item.id} className="col-lg-4 col-md-6 work-card">
-                <div className="card">
-                  <div className="card-img-top">
-                    <i className="bi bi-film"></i>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
-                    <p className="card-text">
-                      <strong>Personaje:</strong> {item.mainCharacter}<br />
-                      <span className="badge bg-info">{item.year}</span>
-                      <span className="badge bg-secondary ms-1">{item.category}</span>
-                    </p>
-                    {item.video && (
-                      <a href={item.video} className="btn btn-sm btn-outline-info" target="_blank" rel="noopener noreferrer">
-                        <i className="bi bi-play-circle"></i> Ver Video
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <DubCard key={item.id} item={item} />
             ))}
           </div>
+          {!loading && !error && importantDoblajes.length > 0 && (
+            <div className="text-center mt-4">
+              <button className="btn btn-info btn-lg" onClick={() => navigate('/doblajes')}>
+                Más trabajos
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </>

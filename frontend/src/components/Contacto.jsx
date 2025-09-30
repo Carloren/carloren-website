@@ -27,13 +27,13 @@ function Contacto() {
                   </div>
                 </div>
                 <div className="social-links mt-4">
-                  <a href="#" className="btn btn-outline-primary me-2">
+                  <a href="#" className="btn btn-outline-info me-2">
                     <i className="bi bi-twitter"></i>
                   </a>
-                  <a href="#" className="btn btn-outline-primary me-2">
+                  <a href="#" className="btn btn-outline-info me-2">
                     <i className="bi bi-instagram"></i>
                   </a>
-                  <a href="#" className="btn btn-outline-primary">
+                  <a href="#" className="btn btn-outline-info">
                     <i className="bi bi-linkedin"></i>
                   </a>
                 </div>

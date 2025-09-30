@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-function Navbar({ currentPage, setCurrentPage, theme, toggleTheme }) {
+function Navbar({ theme, toggleTheme }) {
+  const location = useLocation();
+
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.getElementById('mainNavbar');
@@ -17,18 +20,14 @@ function Navbar({ currentPage, setCurrentPage, theme, toggleTheme }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handlePageChange = (page, e) => {
-    e.preventDefault();
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
-  };
+  const isActive = (path) => location.pathname === path;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNavbar">
       <div className="container">
-        <a className="navbar-brand" href="#" onClick={(e) => handlePageChange('inicio', e)}>
+        <Link className="navbar-brand" to="/">
           <strong>CARLOREN</strong>
-        </a>
+        </Link>
         <button 
           className="navbar-toggler" 
           type="button" 
@@ -40,31 +39,28 @@ function Navbar({ currentPage, setCurrentPage, theme, toggleTheme }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a 
-                className={`nav-link ${currentPage === 'inicio' ? 'active' : ''}`}
-                href="#"
-                onClick={(e) => handlePageChange('inicio', e)}
+              <Link 
+                className={`nav-link ${isActive('/') ? 'active' : ''}`}
+                to="/"
               >
                 Inicio
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a 
-                className={`nav-link ${currentPage === 'doblajes' ? 'active' : ''}`}
-                href="#"
-                onClick={(e) => handlePageChange('doblajes', e)}
+              <Link 
+                className={`nav-link ${isActive('/doblajes') ? 'active' : ''}`}
+                to="/doblajes"
               >
                 Doblajes
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a 
-                className={`nav-link ${currentPage === 'contacto' ? 'active' : ''}`}
-                href="#"
-                onClick={(e) => handlePageChange('contacto', e)}
+              <Link 
+                className={`nav-link ${isActive('/contacto') ? 'active' : ''}`}
+                to="/contacto"
               >
                 Contacto
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <button 

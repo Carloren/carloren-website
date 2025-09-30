@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import Inicio from './components/Inicio.jsx';
@@ -6,7 +7,6 @@ import Doblajes from './components/Doblajes.jsx';
 import Contacto from './components/Contacto.jsx';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('inicio');
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
   });
@@ -20,30 +20,21 @@ function App() {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'inicio':
-        return <Inicio />;
-      case 'doblajes':
-        return <Doblajes />;
-      case 'contacto':
-        return <Contacto />;
-      default:
-        return <Inicio />;
-    }
-  };
-
   return (
-    <div className="App">
-      <Navbar 
-        currentPage={currentPage} 
-        setCurrentPage={setCurrentPage}
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
-      {renderPage()}
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar 
+          theme={theme}
+          toggleTheme={toggleTheme}
+        />
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/doblajes" element={<Doblajes />} />
+          <Route path="/contacto" element={<Contacto />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

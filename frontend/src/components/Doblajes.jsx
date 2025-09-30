@@ -59,7 +59,7 @@ function Doblajes() {
           {loading && (
             <div className="col-12">
               <div className="spinner-container">
-                <div className="spinner-border text-primary" role="status">
+                <div className="spinner-border text-info" role="status">
                   <span className="visually-hidden">Cargando...</span>
                 </div>
               </div>
@@ -93,11 +93,11 @@ function Doblajes() {
                   <h5 className="card-title">{item.title}</h5>
                   <p className="card-text">
                     <strong>Personaje:</strong> {item.mainCharacter}<br />
-                    <span className="badge bg-primary">{item.year}</span>
+                    <span className="badge bg-info">{item.year}</span>
                     <span className="badge bg-secondary ms-1">{item.category}</span>
                   </p>
                   {item.video && (
-                    <a href={item.video} className="btn btn-sm btn-outline-primary" target="_blank" rel="noopener noreferrer">
+                    <a href={item.video} className="btn btn-sm btn-outline-info" target="_blank" rel="noopener noreferrer">
                       <i className="bi bi-play-circle"></i> Ver Video
                     </a>
                   )}

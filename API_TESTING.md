@@ -5,7 +5,8 @@
 ### Start the backend server
 ```bash
 cd backend
-npm start
+pip3 install -r requirements.txt
+python3 server.py
 ```
 
 ### Test all endpoints

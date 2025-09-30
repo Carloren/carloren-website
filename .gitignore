@@ -2,6 +2,20 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Database
 *.db

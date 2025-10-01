@@ -8,19 +8,24 @@ function Doblajes() {
   const [doblajes, setDoblajes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showImportantOnly, setShowImportantOnly] = useState(false);
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 
   useEffect(() => {
-    fetchDoblajes(activeCategory);
-  }, [activeCategory]);
+    fetchDoblajes(activeCategory, showImportantOnly);
+  }, [activeCategory, showImportantOnly]);
 
-  const fetchDoblajes = async (category) => {
+  const fetchDoblajes = async (category, importantOnly) => {
     setLoading(true);
     setError(null);
     
     try {
-      const response = await fetch(`${API_URL}/doblajes?category=${encodeURIComponent(category)}`);
+      let url = `${API_URL}/doblajes?category=${encodeURIComponent(category)}`;
+      if (importantOnly) {
+        url += '&important=true';
+      }
+      const response = await fetch(url);
       
       if (!response.ok) {
         throw new Error('Error al cargar los datos');
@@ -42,7 +47,7 @@ function Doblajes() {
         <h2 className="text-center mb-5">Mi Trabajo</h2>
         
         {/* Category Tabs */}
-        <ul className="nav nav-pills justify-content-center mb-5">
+        <ul className="nav nav-pills justify-content-center mb-4">
           {categories.map(category => (
             <li key={category} className="nav-item">
               <button
@@ -54,6 +59,26 @@ function Doblajes() {
             </li>
           ))}
         </ul>
+
+        {/* Destacados/Todos Switch */}
+        <div className="d-flex justify-content-center mb-5">
+          <div className="btn-group" role="group" aria-label="Filter switch">
+            <button
+              type="button"
+              className={`btn ${showImportantOnly ? 'btn-info' : 'btn-outline-info'}`}
+              onClick={() => setShowImportantOnly(true)}
+            >
+              Destacados
+            </button>
+            <button
+              type="button"
+              className={`btn ${!showImportantOnly ? 'btn-info' : 'btn-outline-info'}`}
+              onClick={() => setShowImportantOnly(false)}
+            >
+              Todos
+            </button>
+          </div>
+        </div>
 
         {/* Content */}
         <div className="row">

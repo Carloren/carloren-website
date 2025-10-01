@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx';
 import Inicio from './components/Inicio.jsx';
 import Doblajes from './components/Doblajes.jsx';
 import Contacto from './components/Contacto.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
         <Footer />
+        <ScrollToTop />
       </div>
     </Router>
   );

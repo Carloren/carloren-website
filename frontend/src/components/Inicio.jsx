@@ -47,7 +47,7 @@ function Inicio() {
                 Dando voz a personajes inolvidables en series, películas, documentales y más. 
                 Con años de experiencia en la industria del doblaje en español.
               </p>
-              <button className="btn btn-info btn-lg" onClick={() => window.scrollTo(0, document.body.scrollHeight)}>
+              <button className="btn btn-info btn-lg" onClick={() => document.getElementById('important-doblajes')?.scrollIntoView({ behavior: 'smooth' })}>
                 Ver Trabajos
               </button>
             </div>

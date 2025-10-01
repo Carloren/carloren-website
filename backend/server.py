@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Database setup
-DB_PATH = os.path.join(os.path.dirname(__file__), 'database.db')
+DB_PATH = os.path.join(os.path.dirname(__file__), 'doblajes.db')
 
 def get_db_connection():
     """Create a database connection"""

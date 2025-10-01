@@ -9,7 +9,7 @@ function Doblajes() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros'];
+  const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 
   useEffect(() => {
     fetchDoblajes(activeCategory);

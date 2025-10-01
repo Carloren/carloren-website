@@ -47,7 +47,9 @@ def init_db():
             ('Inception', 2010, 'Películas', 'inception.jpg', '', 'Cobb', 0),
             ('Blue Planet II', 2017, 'Documentales', 'blue-planet.jpg', '', 'Narrador', 1),
             ('Anuncio Nike', 2023, 'Locuciones', 'nike.jpg', '', 'Voz en Off', 1),
-            ('Harry Potter y la Piedra Filosofal', 2020, 'Audiolibros', 'harry-potter.jpg', '', 'Harry Potter', 0)
+            ('Harry Potter y la Piedra Filosofal', 2020, 'Audiolibros', 'harry-potter.jpg', '', 'Harry Potter', 0),
+            ('The Last of Us', 2013, 'Videojuegos', 'tlou.jpg', '', 'Joel', 1),
+            ('God of War', 2018, 'Videojuegos', 'gow.jpg', '', 'Kratos', 0)
         ]
         
         cursor.executemany(

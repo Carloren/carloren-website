@@ -17,16 +17,16 @@ function Inicio() {
   const fetchImportantDoblajes = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await fetch(`${API_URL}/doblajes?important=true`);
-      
+
       if (!response.ok) {
         throw new Error('Error al cargar los datos');
       }
 
       const data = await response.json();
-      
+
       // Sort by media priority (video > image > none), then by year DESC
       const sortedData = data.sort((a, b) => {
         // Define priority: video=3, image=2, none=1
@@ -35,19 +35,19 @@ function Inicio() {
           if (item.image && item.image.trim() !== '') return 2;
           return 1;
         };
-        
+
         const priorityA = getPriority(a);
         const priorityB = getPriority(b);
-        
+
         // Sort by priority first (descending)
         if (priorityA !== priorityB) {
           return priorityB - priorityA;
         }
-        
+
         // If same priority, sort by year (descending)
         return b.year - a.year;
       });
-      
+
       setImportantDoblajes(sortedData);
     } catch (error) {
       console.error('Error:', error);
@@ -61,21 +61,30 @@ function Inicio() {
     <>
       <section id="inicio" className="hero-section">
         <div className="container">
-          <div className="row align-items-center min-vh-100">
+          <div className="row align-items-center">
             <div className="col-lg-6">
               <h1 className="display-3 fw-bold mb-4">Carlos Lorenzo</h1>
               <h2 className="h3 mb-4">Actor de Doblaje Profesional</h2>
               <p className="lead mb-4">
-                Dando voz a personajes inolvidables en series, películas, documentales y más. 
+                Dando voz a personajes inolvidables en series, películas, documentales y más.
                 Con años de experiencia en la industria del doblaje en español.
               </p>
-              <button className="btn btn-info btn-lg" onClick={() => document.getElementById('important-doblajes')?.scrollIntoView({ behavior: 'smooth' })}>
+              {/* <button className="btn btn-info btn-lg" onClick={() => document.getElementById('important-doblajes')?.scrollIntoView({ behavior: 'smooth' })}>
                 Ver Trabajos
-              </button>
+              </button> */}
             </div>
             <div className="col-lg-6">
               <div className="hero-image">
-                <i className="bi bi-mic-fill display-1"></i>
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/M7AltvUXAUA?si=qqfkPkcSZUC3RY3r"
+                  title="Demo de doblaje"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
               </div>
             </div>
           </div>
@@ -95,7 +104,7 @@ function Inicio() {
                 </div>
               </div>
             )}
-            
+
             {error && (
               <div className="col-12">
                 <div className="alert alert-danger" role="alert">
@@ -103,7 +112,7 @@ function Inicio() {
                 </div>
               </div>
             )}
-            
+
             {!loading && !error && importantDoblajes.length === 0 && (
               <div className="col-12">
                 <div className="empty-state">
@@ -112,7 +121,7 @@ function Inicio() {
                 </div>
               </div>
             )}
-            
+
             {!loading && !error && importantDoblajes.map(item => (
               <DubCard key={item.id} item={item} />
             ))}

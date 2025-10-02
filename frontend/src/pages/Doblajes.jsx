@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import DubCard from './DubCard.jsx';
+import DubCard from '../components/DubCard.jsx';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -32,7 +32,29 @@ function Doblajes() {
       }
 
       const data = await response.json();
-      setDoblajes(data);
+      
+      // Sort by media priority (video > image > none), then by year DESC
+      const sortedData = data.sort((a, b) => {
+        // Define priority: video=3, image=2, none=1
+        const getPriority = (item) => {
+          if (item.video && item.video.trim() !== '') return 3;
+          if (item.image && item.image.trim() !== '') return 2;
+          return 1;
+        };
+        
+        const priorityA = getPriority(a);
+        const priorityB = getPriority(b);
+        
+        // Sort by priority first (descending)
+        if (priorityA !== priorityB) {
+          return priorityB - priorityA;
+        }
+        
+        // If same priority, sort by year (descending)
+        return b.year - a.year;
+      });
+      
+      setDoblajes(sortedData);
     } catch (error) {
       console.error('Error:', error);
       setError('Error al cargar los datos. Por favor, asegúrate de que el servidor backend esté funcionando.');

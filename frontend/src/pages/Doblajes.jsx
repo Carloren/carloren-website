@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import DubCard from './DubCard.jsx';
+import DubCard from '../components/DubCard.jsx';
 
 const API_URL = 'http://localhost:3000/api';
 

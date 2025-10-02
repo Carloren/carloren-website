@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DubCard from './DubCard.jsx';
+import DubCard from '../components/DubCard.jsx';
 
 const API_URL = 'http://localhost:3000/api';
 

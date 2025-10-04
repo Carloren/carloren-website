@@ -1,26 +1,26 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 const brands = [
-    { name: 'Nike', img: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg' },
-    { name: 'Adidas', img: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg' },
-    { name: 'Apple', img: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' },
-    { name: 'Google', img: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg' },
-    { name: 'Amazon', img: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
-    { name: 'Samsung', img: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg' },
-    { name: 'Microsoft', img: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg' },
-    { name: 'Coca-Cola', img: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Coca-Cola_logo.svg' },
-    { name: 'Pepsi', img: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Pepsi_logo.svg' },
-    { name: 'Sony', img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.svg' },
-    { name: 'Toyota', img: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Toyota_logo.svg' },
-    { name: 'Honda', img: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_logo.svg' },
-    { name: 'BMW', img: 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg' },
-    { name: 'Mercedes', img: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg' },
-    { name: 'Intel', img: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg' },
-    { name: 'HP', img: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/HP_logo_2012.svg' },
-    { name: 'Dell', img: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg' },
-    { name: 'LG', img: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/LG_logo_%282015%29.svg' },
-    { name: 'Puma', img: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Puma_logo.svg' },
-    { name: 'Reebok', img: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Reebok_logo.svg' },
+    { name: 'Nike', img: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg', invertible: true },
+    { name: 'Adidas', img: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg', invertible: true },
+    { name: 'Apple', img: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', invertible: true },
+    { name: 'Google', img: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', invertible: false },
+    { name: 'Amazon', img: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', invertible: true },
+    { name: 'Samsung', img: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg', invertible: true },
+    { name: 'Microsoft', img: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg', invertible: false },
+    { name: 'Coca-Cola', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/1920px-Coca-Cola_logo.svg.png', invertible: false },
+    { name: 'Pepsi', img: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Pepsi_logo.svg', invertible: true },
+    { name: 'Sony', img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.svg', invertible: true },
+    { name: 'Toyota', img: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Toyota_logo.svg', invertible: true },
+    { name: 'Honda', img: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_logo.svg', invertible: true },
+    { name: 'BMW', img: 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg', invertible: false },
+    { name: 'Mercedes', img: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg', invertible: false },
+    { name: 'Intel', img: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg', invertible: true },
+    { name: 'HP', img: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/HP_logo_2012.svg', invertible: true },
+    { name: 'Dell', img: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg', invertible: false },
+    { name: 'LG', img: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/LG_logo_%282015%29.svg', invertible: true },
+    { name: 'Puma', img: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Puma_logo.svg', invertible: true },
+    { name: 'Reebok', img: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Reebok_logo.svg', invertible: true },
 ];
 
 function BrandCarousel() {
@@ -40,8 +40,6 @@ function BrandCarousel() {
         if (trackRef.current) {
             const newScrollPosition = trackRef.current.scrollLeft;
             const totalScrollWidth = trackRef.current.scrollWidth - trackRef.current.clientWidth;
-            console.log(newScrollPosition, totalScrollWidth);
-
 
             // Check if we need to loop back to the start
             if (newScrollPosition >= totalScrollWidth) {
@@ -72,7 +70,7 @@ function BrandCarousel() {
             >
                 {brands.map((brand, i) => (
                     <div className="brand-item" key={brand.name + i}>
-                        <img src={brand.img} alt={brand.name} className="brand-logo" />
+                        <img src={brand.img} alt={brand.name} className={brand.invertible ? "brand-logo invertible" : "brand-logo"} />
                     </div>
                 ))}
             </div>

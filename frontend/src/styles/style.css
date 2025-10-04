@@ -162,12 +162,8 @@ body {
     transition: filter 0.3s;
 }
 
-.brand-logo-invertible {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
+.invertible {
     filter: var(--carousel-logo-filter, none);
-    transition: filter 0.3s;
 }
 
 .brand-name {
@@ -231,7 +227,7 @@ body {
     --carousel-btn-active-bg: #444;
 }
 
-[data-theme="dark"] .brand-logo-invertible {
+[data-theme="dark"] .invertible {
     --carousel-logo-filter: invert(1);
 }
 

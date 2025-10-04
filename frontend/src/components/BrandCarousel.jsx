@@ -1,37 +1,37 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 const brands = [
-    { name: 'Netflix', img: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg', invertible: false },
-    { name: 'HBO', img: 'https://upload.wikimedia.org/wikipedia/commons/b/b3/HBO_Max_%282025%29.svg', invertible: true },
-    { name: 'Crunchyroll', img: 'https://cdn.worldvectorlogo.com/logos/crunchyroll-2.svg', invertible: false },
-    { name: 'Prime Video', img: 'https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg', invertible: false },
-    { name: 'Ubisoft', img: 'https://cdn.worldvectorlogo.com/logos/ubisoft-3.svg', invertible: true },
-    { name: 'Bethesda', img: 'https://cdn.worldvectorlogo.com/logos/bethesda-game-studios-1.svg', invertible: true },
-    { name: 'SkyShowtime', img: 'https://cdn.worldvectorlogo.com/logos/sky-4.svg', invertible: true },
-    { name: 'Samsung', img: 'https://cdn.worldvectorlogo.com/logos/samsung-8.svg', invertible: true },
-    { name: 'Schweppes', img: 'https://cdn.worldvectorlogo.com/logos/schweppes-5.svg', invertible: false },
-    { name: 'Mercadona', img: 'https://cdn.worldvectorlogo.com/logos/mercadona.svg', invertible: false },
-    { name: 'Ministerio de Hacienda', img: 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Logotipo_del_Ministerio_de_Hacienda.svg', invertible: false },
-    { name: 'Movistar Plus', img: 'https://cdn.worldvectorlogo.com/logos/movistar-plus-2022-logo-1.svg', invertible: true },
-    { name: 'AMC+', img: 'https://cdn.worldvectorlogo.com/logos/amc.svg', invertible: true },
-    { name: 'ACORN TV', img: 'https://m.media-amazon.com/images/G/01/digital/video/merch/subs/benefit-id/a-f/acorntves/logos/3p-logo._CB554484535_.png', invertible: false },
-    { name: 'Animebox', img: 'https://api.selecta-vision-production.eu-west-2.tuc.red/configuration/wrLgIdrecEs3at3jaThLBaqiRu4uPhiW/data/images/cce25b8856981b368189020cedebca23fccab016b9197d48bfc9cc04011f283c.png', invertible: false },
-    { name: 'Antena 3', img: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Logo_Antena_3_2025_%28Naranja%29.svg', invertible: false },
-    { name: 'Nova', img: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Nova.svg', invertible: false },
-    { name: 'Nickelodeon', img: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Nickelodeon_2009_logo.svg', invertible: false },
-    { name: 'EAE Business School', img: 'https://d30mzt1bxg5llt.cloudfront.net/public/uploads/images/_signatoryLogo/AF_EAE-BS_LOGO_RGB_ROJO.png', invertible: false },
-    { name: 'Finanzas para todos', img: 'https://www.finanzasparatodos.es/system/themes/logos/000/000/001/original/finanzas.png?1614951093', invertible: false },
-    { name: 'Numericco', img: 'https://ajezaragoza.com/wp-content/uploads/2019/04/logotipo-numericco.png', invertible: false },
-    { name: 'Canal Cocina', img: 'https://canalcocina.es/images/canalcocina.png', invertible: false },
-    { name: 'Dark', img: 'https://ipmark.com/wp-content/uploads/2016/10/DARK-Canal-Televisi%C3%B3n-Terror.png', invertible: true },
-    { name: 'DMAX', img: 'https://upload.wikimedia.org/wikipedia/commons/9/98/DMAX_BLACK.svg', invertible: true },
-    { name: 'Discovery+', img: 'https://vectorseek.com/wp-content/uploads/2023/08/Discovery-Plus-Logo-Vector.svg-.png', invertible: true },
-    { name: 'Beon Entertainment', img: 'https://beonworldwide.com/assets/img/footer/logo-footer-light.svg', invertible: false },
-    { name: 'SIMA', img: 'https://simaexpo.com/wp-content/themes/sima2025/images/SIMA-gen.svg', invertible: true },
-    { name: 'Lodgerin', img: 'https://cdn.prod.website-files.com/661d37451db040cda5844e0c/665461bbb375b6e7e3cfd280_Logo_Azul.png', invertible: false },
-    { name: 'Everak', img: 'https://www.everak.com/img/logo-blanco.png', invertible: false },
-    { name: 'Bookavivo', img: 'https://rbmediaglobal.com/wp-content/uploads/2021/03/bookavivo-red-white-300x53.png', invertible: false },
-    { name: 'MTV', img: 'https://es.wikipedia.org/wiki/MTV#/media/Archivo:MTV_2021_(brand_version).svg', invertible: false },
+    { name: 'Netflix', img: '/src/assets/logos/netflix.svg', invertible: false, wide: true },
+    { name: 'HBO', img: '/src/assets/logos/hbo.svg', invertible: true, wide: false },
+    { name: 'Crunchyroll', img: '/src/assets/logos/crunchyroll.svg', invertible: false, wide: true },
+    { name: 'Prime Video', img: '/src/assets/logos/prime-video.svg', invertible: false, wide: true },
+    { name: 'Ubisoft', img: '/src/assets/logos/ubisoft.svg', invertible: true, wide: false },
+    { name: 'Bethesda', img: '/src/assets/logos/bethesda.svg', invertible: true, wide: true },
+    { name: 'SkyShowtime', img: '/src/assets/logos/sky.svg', invertible: true, wide: false },
+    { name: 'Samsung', img: '/src/assets/logos/samsung.svg', invertible: true, wide: true },
+    { name: 'Schweppes', img: '/src/assets/logos/schweppes.svg', invertible: false, wide: true },
+    { name: 'Mercadona', img: '/src/assets/logos/mercadona.svg', invertible: false, wide: true },
+    { name: 'Ministerio de Hacienda', img: '/src/assets/logos/ministerio-hacienda.svg', invertible: false, wide: true },
+    { name: 'Movistar Plus', img: '/src/assets/logos/movistar-plus.svg', invertible: true, wide: false },
+    { name: 'AMC+', img: '/src/assets/logos/amc.svg', invertible: true, wide: false },
+    { name: 'ACORN TV', img: '/src/assets/logos/acorn-tv.png', invertible: false, wide: true },
+    { name: 'Animebox', img: '/src/assets/logos/animebox.png', invertible: false, wide: false },
+    { name: 'Antena 3', img: '/src/assets/logos/antena3.svg', invertible: false, wide: false },
+    { name: 'Nova', img: '/src/assets/logos/nova.svg', invertible: false, wide: false },
+    { name: 'Nickelodeon', img: '/src/assets/logos/nickelodeon.svg', invertible: false, wide: true },
+    { name: 'EAE Business School', img: '/src/assets/logos/eae-business-school.png', invertible: false, wide: true },
+    { name: 'Finanzas para todos', img: '/src/assets/logos/finanzas-para-todos.png', invertible: false, wide: true },
+    { name: 'Numericco', img: '/src/assets/logos/numericco.png', invertible: false, wide: true },
+    { name: 'Canal Cocina', img: '/src/assets/logos/canal-cocina.png', invertible: false, wide: true },
+    { name: 'Dark', img: '/src/assets/logos/dark.png', invertible: true, wide: false },
+    { name: 'DMAX', img: '/src/assets/logos/dmax.svg', invertible: true, wide: false },
+    { name: 'Discovery+', img: '/src/assets/logos/discovery-plus.png', invertible: false, wide: true },
+    { name: 'Beon Entertainment', img: '/src/assets/logos/beon-entertainment.svg', invertible: false, wide: false },
+    { name: 'SIMA', img: '/src/assets/logos/sima.svg', invertible: false, wide: false },
+    { name: 'Lodgerin', img: '/src/assets/logos/lodgerin.png', invertible: false, wide: true },
+    { name: 'Everak', img: '/src/assets/logos/everak.png', invertible: false, wide: true },
+    { name: 'Bookavivo', img: '/src/assets/logos/bookavivo.png', invertible: false, wide: true },
+    { name: 'MTV', img: '/src/assets/logos/mtv.svg', invertible: false, wide: false },
 ];
 
 function BrandCarousel() {
@@ -81,7 +81,7 @@ function BrandCarousel() {
             >
                 {brands.map((brand, i) => (
                     <div className="brand-item" key={brand.name + i}>
-                        <img src={brand.img} alt={brand.name} className={brand.invertible ? "brand-logo invertible" : "brand-logo"} />
+                        <img style={{ width: brand.wide ? '100%' : '' }} src={brand.img} alt={brand.name} className={brand.invertible ? "brand-logo invertible" : "brand-logo"} />
                     </div>
                 ))}
             </div>

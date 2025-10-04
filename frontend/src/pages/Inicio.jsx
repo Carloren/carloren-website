@@ -79,9 +79,8 @@ function Inicio() {
             <div className="col-lg-6  mt-4">
               <div className="hero-image">
                 <iframe
-                  className="rounded shadow-lg"
-                  width="560"
-                  height="315"
+                  className="rounded shadow-lg w-100"
+                  style={{ aspectRatio: '16/9' }}
                   src="https://www.youtube.com/embed/M7AltvUXAUA?si=qqfkPkcSZUC3RY3r"
                   title="Demo de doblaje"
                   frameborder="0"
@@ -93,9 +92,9 @@ function Inicio() {
             </div>
           </div>
         </div>
-          {/* Brand carousel below hero section */}
-          <BrandCarousel />
-        
+        {/* Brand carousel below hero section */}
+        <BrandCarousel />
+
       </section>
 
       <section id="important-doblajes" className="py-5">

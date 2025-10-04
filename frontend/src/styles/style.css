@@ -44,6 +44,11 @@ body {
     flex-direction: column;
 }
 
+.text-justify {
+    text-align: justify;
+    /*Por algún motivo a bootstrap no le gusta y no tiene justificación de texto*/
+}
+
 /* Navbar */
 .navbar {
     background-color: var(--navbar-bg) !important;
@@ -97,6 +102,137 @@ body {
     text-align: center;
     color: #0dcaf0;
     font-size: 10rem;
+}
+
+/*Brand Carousel Section*/
+.brand-carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: calc(160px * 5 + 1rem * 4 + 48px * 2);
+    /* 5 boxes + 4 gaps + 2 button paddings */
+    margin: 2rem auto 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 24px;
+    overflow: hidden;
+}
+
+.brand-carousel-track {
+    display: flex;
+    gap: 1rem;
+    border-radius: 2rem;
+    box-shadow: none;
+    padding: 1rem 0;
+    transition: background 0.3s;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex: 1 1 0%;
+    min-width: 0;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.brand-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.brand-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
+    user-select: none;
+    pointer-events: auto;
+    background: var(--carousel-bg, #fff);
+    border-radius: 1rem;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+}
+
+.brand-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: filter 0.3s;
+}
+
+.brand-logo-invertible {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: var(--carousel-logo-filter, none);
+    transition: filter 0.3s;
+}
+
+.brand-name {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--carousel-text, #222);
+    transition: color 0.3s;
+}
+
+.carousel-btn {
+    background: none;
+    color: var(--carousel-btn-color, #222);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    z-index: 2;
+    position: relative;
+
+    :hover {
+        color: var(--carousel-btn-hover-color, #555);
+    }
+}
+
+.carousel-btn:active {
+    background: var(--carousel-btn-active-bg, #ccc);
+}
+
+@media (max-width: 700px) {
+    .brand-item {
+        width: 80px;
+        min-width: 80px;
+        max-width: 80px;
+    }
+
+    .brand-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .brand-carousel-track {
+        gap: 0.5rem;
+        padding: 0.5rem 0.2rem;
+        width: calc(80px * 5 + 0.5rem * 4 + 1rem);
+    }
+}
+
+[data-theme="dark"] .brand-carousel-track {
+    --carousel-bg: #222;
+    --carousel-text: #eee;
+}
+
+[data-theme="dark"] .carousel-btn {
+    --carousel-btn-bg: #333;
+    --carousel-btn-color: white;
+    --carousel-btn-hover-color: #555;
+    --carousel-btn-hover-bg: #444;
+    --carousel-btn-active-bg: #444;
+}
+
+[data-theme="dark"] .brand-logo-invertible {
+    --carousel-logo-filter: invert(1);
 }
 
 /* Doblajes Section */

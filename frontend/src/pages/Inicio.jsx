@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import BrandCarousel from '../components/BrandCarousel.jsx';
 import { useNavigate } from 'react-router-dom';
 import DubCard from '../components/DubCard.jsx';
 
@@ -92,6 +93,9 @@ function Inicio() {
             </div>
           </div>
         </div>
+          {/* Brand carousel below hero section */}
+          <BrandCarousel />
+        
       </section>
 
       <section id="important-doblajes" className="py-5">

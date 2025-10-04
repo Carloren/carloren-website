@@ -50,11 +50,15 @@ function BrandCarousel() {
     const scrollByAmount = (amount) => {
         if (trackRef.current) {
             const newScrollPosition = trackRef.current.scrollLeft;
-            const totalScrollWidth = trackRef.current.scrollWidth - trackRef.current.clientWidth;
+            const totalScrollWidth = trackRef.current.scrollWidth - trackRef.current.clientWidth - 1;
+            console.log({ newScrollPosition, totalScrollWidth });
+
 
             // Check if we need to loop back to the start
-            if (newScrollPosition >= totalScrollWidth) {
+            if (newScrollPosition >= totalScrollWidth && amount > 0) {
                 trackRef.current.scrollBy({ left: -totalScrollWidth, behavior: 'smooth' });
+            } else if (newScrollPosition <= 0 && amount < 0) {
+                trackRef.current.scrollBy({ left: totalScrollWidth, behavior: 'smooth' });
             } else {
                 trackRef.current.scrollBy({ left: amount, behavior: 'smooth' });
             }

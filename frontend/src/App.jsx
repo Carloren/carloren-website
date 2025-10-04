@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar 
+        <Navbar
           theme={theme}
           toggleTheme={toggleTheme}
         />

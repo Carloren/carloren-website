@@ -6,10 +6,8 @@ function DubCard({ item }) {
           <div className="card-video-top">
             <iframe
               width={"100%"}
-              aspectRatio={"16/9"}
               src={item.video}
               title={item.title}
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>

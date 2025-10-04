@@ -28,10 +28,10 @@ function Navbar({ theme, toggleTheme }) {
         <Link className="navbar-brand" to="/">
           <strong>CARLOREN</strong>
         </Link>
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
         >
           <span className="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@ function Navbar({ theme, toggleTheme }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link 
+              <Link
                 className={`nav-link ${isActive('/') ? 'active' : ''}`}
                 to="/"
               >
@@ -47,7 +47,7 @@ function Navbar({ theme, toggleTheme }) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link 
+              <Link
                 className={`nav-link ${isActive('/doblajes') ? 'active' : ''}`}
                 to="/doblajes"
               >
@@ -55,7 +55,7 @@ function Navbar({ theme, toggleTheme }) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link 
+              <Link
                 className={`nav-link ${isActive('/contacto') ? 'active' : ''}`}
                 to="/contacto"
               >
@@ -63,8 +63,8 @@ function Navbar({ theme, toggleTheme }) {
               </Link>
             </li>
             <li className="nav-item">
-              <button 
-                className="btn btn-link nav-link" 
+              <button
+                className="btn btn-link nav-link"
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
               >

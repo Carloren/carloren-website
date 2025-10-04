@@ -83,10 +83,9 @@ function Inicio() {
                   style={{ aspectRatio: '16/9' }}
                   src="https://www.youtube.com/embed/M7AltvUXAUA?si=qqfkPkcSZUC3RY3r"
                   title="Demo de doblaje"
-                  frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen>
                 </iframe>
               </div>
             </div>

@@ -19,20 +19,20 @@ function Doblajes() {
   const fetchDoblajes = async (category, importantOnly) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       let url = `${API_URL}/doblajes?category=${encodeURIComponent(category)}`;
       if (importantOnly) {
         url += '&important=true';
       }
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error('Error al cargar los datos');
       }
 
       const data = await response.json();
-      
+
       // Sort by media priority (video > image > none), then by year DESC
       const sortedData = data.sort((a, b) => {
         // Define priority: video=3, image=2, none=1
@@ -41,19 +41,19 @@ function Doblajes() {
           if (item.image && item.image.trim() !== '') return 2;
           return 1;
         };
-        
+
         const priorityA = getPriority(a);
         const priorityB = getPriority(b);
-        
+
         // Sort by priority first (descending)
         if (priorityA !== priorityB) {
           return priorityB - priorityA;
         }
-        
+
         // If same priority, sort by year (descending)
         return b.year - a.year;
       });
-      
+
       setDoblajes(sortedData);
     } catch (error) {
       console.error('Error:', error);
@@ -66,8 +66,8 @@ function Doblajes() {
   return (
     <section id="doblajes" className="py-5" style={{ marginTop: '56px' }}>
       <div className="container">
-        <h2 className="text-center mb-5">Mi Trabajo</h2>
-        
+        <h2 className="text-center mb-5">Mis Trabajos</h2>
+
         {/* Category Tabs */}
         <ul className="nav nav-pills justify-content-center mb-4">
           {categories.map(category => (
@@ -113,7 +113,7 @@ function Doblajes() {
               </div>
             </div>
           )}
-          
+
           {error && (
             <div className="col-12">
               <div className="alert alert-danger" role="alert">
@@ -121,7 +121,7 @@ function Doblajes() {
               </div>
             </div>
           )}
-          
+
           {!loading && !error && doblajes.length === 0 && (
             <div className="col-12">
               <div className="empty-state">
@@ -130,7 +130,7 @@ function Doblajes() {
               </div>
             </div>
           )}
-          
+
           {!loading && !error && doblajes.map(item => (
             <DubCard key={item.id} item={item} />
           ))}

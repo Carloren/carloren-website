@@ -9,7 +9,7 @@ function Contacto() {
               <div className="card-body p-4">
                 <h5 className="card-title mb-4">¿Interesado en trabajar conmigo?</h5>
                 <p className="card-text mb-4">
-                  Estoy disponible para proyectos de doblaje, locución, audiolibros y más. 
+                  Estoy disponible para proyectos de doblaje, locución, audiolibros y más.
                   No dudes en contactarme para discutir tu próximo proyecto.
                 </p>
                 <div className="contact-info">

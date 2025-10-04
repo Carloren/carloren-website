@@ -74,7 +74,7 @@ function BrandCarousel() {
 
     return (
         <div className="container d-flex align-items-center">
-            <button className="carousel-btn" onClick={handlePrev} aria-label="Previous brands"><i class="bi bi-chevron-left"></i></button>
+            <button className="carousel-btn" onClick={handlePrev} aria-label="Previous brands"><i className="bi bi-chevron-left"></i></button>
             <div
                 className="brand-carousel-track"
                 ref={trackRef}
@@ -85,7 +85,7 @@ function BrandCarousel() {
                     </div>
                 ))}
             </div>
-            <button className="carousel-btn" onClick={handleNext} aria-label="Next brands"><i class="bi bi-chevron-right"></i></button>
+            <button className="carousel-btn" onClick={handleNext} aria-label="Next brands"><i className="bi bi-chevron-right"></i></button>
         </div>
     );
 }

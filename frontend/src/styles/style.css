@@ -47,7 +47,7 @@ body {
 /* Navbar */
 .navbar {
     background-color: var(--navbar-bg) !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 [data-theme="dark"] .navbar {
@@ -60,11 +60,16 @@ body {
 }
 
 [data-theme="dark"] .navbar-light .navbar-toggler {
-    border-color: rgba(255,255,255,.1);
+    border-color: rgba(255, 255, 255, .1);
 }
 
 [data-theme="dark"] .navbar-light .navbar-toggler-icon {
     filter: invert(1);
+}
+
+.text-justify {
+    text-align: justify;
+    /*Por algún motivo a bootstrap no le gusta y no tiene justificación de texto*/
 }
 
 .navbar-brand {
@@ -122,7 +127,7 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] .card {
@@ -194,16 +199,16 @@ footer {
     .hero-section h1 {
         font-size: 2.5rem;
     }
-    
+
     .hero-image {
         font-size: 5rem;
         margin-top: 2rem;
     }
-    
+
     .nav-pills {
         flex-wrap: wrap;
     }
-    
+
     .nav-pills .nav-link {
         margin-bottom: 0.5rem;
     }
@@ -271,4 +276,3 @@ section {
 .scroll-to-top i {
     line-height: 1;
 }
-

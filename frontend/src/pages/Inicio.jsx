@@ -63,19 +63,22 @@ function Inicio() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <h1 className="display-3 fw-bold mb-4">Carlos Lorenzo</h1>
-              <h2 className="h3 mb-4">Actor de Doblaje Profesional</h2>
-              <p className="lead mb-4">
-                Dando voz a personajes inolvidables en series, películas, documentales y más.
-                Con años de experiencia en la industria del doblaje en español.
+              <h1 className="display-3 fw-bold mb-0">Carlos Lorenzo</h1>
+              <h2 className="display-7 fw-bold fst-italic mb-4">-Carloren-</h2>
+              <h2 className="h3 mb-4">Actor de voz y locutor profesional</h2>
+              <p className="lead mb-4 text-justify">
+                Presto mi voz y doy vida a personajes en series, películas, videojuegos y más.
+                <br />
+                Ya necesites un grito desgarrador, una voz cálida y amigable, o un tono serio y profesional, cuenta conmigo.
               </p>
               {/* <button className="btn btn-info btn-lg" onClick={() => document.getElementById('important-doblajes')?.scrollIntoView({ behavior: 'smooth' })}>
                 Ver Trabajos
               </button> */}
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6  mt-4">
               <div className="hero-image">
                 <iframe
+                  className="rounded shadow-lg"
                   width="560"
                   height="315"
                   src="https://www.youtube.com/embed/M7AltvUXAUA?si=qqfkPkcSZUC3RY3r"

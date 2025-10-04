@@ -22,7 +22,7 @@ function DubCard({ item }) {
         <div className="card-body">
           <h5 className="card-title">{item.title}</h5>
           <p className="card-text">
-            <i>{item.mainCharacter}</i><br />
+            <i>{item.mainCharacter ? item.mainCharacter : "Voces adicionales"}</i><br />
             <span className="badge bg-info">{item.year}</span>
             <span className="badge bg-secondary ms-1">{item.category}</span>
           </p>

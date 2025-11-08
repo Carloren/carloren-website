@@ -37,6 +37,7 @@ function Doblajes() {
       const sortedData = data.sort((a, b) => {
         // Define priority: video=3, image=2, none=1
         const getPriority = (item) => {
+          if (item.mainCharacter && item.mainCharacter.trim() !== '') return 4;
           if (item.video && item.video.trim() !== '') return 3;
           if (item.image && item.image.trim() !== '') return 2;
           return 1;

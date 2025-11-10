@@ -5,6 +5,7 @@ function DubCard({ item }) {
         {item.video ? (
           <div className="card-video-top">
             <iframe
+              referrerPolicy="strict-origin-when-cross-origin"
               width={"100%"}
               src={item.video}
               title={item.title}

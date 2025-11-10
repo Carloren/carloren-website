@@ -9,6 +9,7 @@ const brands = [
     { name: 'Bethesda', img: '/src/assets/logos/bethesda.svg', invertible: true, wide: true },
     { name: 'SkyShowtime', img: '/src/assets/logos/sky.svg', invertible: true, wide: false },
     { name: 'Samsung', img: '/src/assets/logos/samsung.svg', invertible: true, wide: true },
+    { name: 'Repsol', img: '/src/assets/logos/repsol.svg', invertible: false, wide: true },
     { name: 'Schweppes', img: '/src/assets/logos/schweppes.svg', invertible: false, wide: true },
     { name: 'Mercadona', img: '/src/assets/logos/mercadona.svg', invertible: false, wide: true },
     { name: 'Ministerio de Hacienda', img: '/src/assets/logos/ministerio-hacienda.svg', invertible: false, wide: true },

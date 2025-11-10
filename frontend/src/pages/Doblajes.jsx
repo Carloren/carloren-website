@@ -67,7 +67,8 @@ function Doblajes() {
   return (
     <section id="doblajes" className="py-5" style={{ marginTop: '56px' }}>
       <div className="container">
-        <h2 className="text-center mb-5">Mis Trabajos</h2>
+        <h2 className="text-center">Mis Trabajos</h2>
+        <h4 className="text-center mb-5"><a className="link-info text-decoration-none" href="https://www.eldoblaje.com/datos/FichaActorDoblaje.asp?id=180068&Orden=A" target="_blank">Mi página en ElDoblaje.com</a></h4>
 
         {/* Category Tabs */}
         <ul className="nav nav-pills justify-content-center mb-4">

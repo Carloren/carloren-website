@@ -14,11 +14,11 @@ Custom website about the voice actor Carlos Lorenzo (Carloren)
    ```
 2. Install Python dependencies:
    ```bash
-   pip3 install -r requirements.txt
+   pip install -r requirements.txt
    ```
 3. Start the backend server:
    ```bash
-   python3 server.py
+   python server.py
    ```
    The backend will run on http://localhost:3000
 
@@ -63,15 +63,15 @@ Custom website about the voice actor Carlos Lorenzo (Carloren)
 ## API Endpoints
 
 ### GET /api/doblajes
-Obtiene la lista de doblajes con filtros opcionales.
+Fetches the list of dubs with optional filters.
 
 **Query Parameters:**
-- `year` (opcional): Filtrar por año
-- `title` (opcional): Filtrar por título (búsqueda parcial)
-- `category` (opcional): Filtrar por categoría
-- `important` (opcional): Filtrar por trabajos destacados (true/false)
+- `year` (optional): Filter by year
+- `title` (optional): Filter by title
+- `category` (optional): Filter by category
+- `important` (optional): Filter by important jobs (true/false)
 
-**Ejemplo:**
+**Examples:**
 ```
 GET /api/doblajes?category=Series
 GET /api/doblajes?year=2020
@@ -80,4 +80,4 @@ GET /api/doblajes?important=true
 ```
 
 ### GET /api/categories
-Obtiene la lista de todas las categorías disponibles.
+Fetches the list of all avalaible categories.

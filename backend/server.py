@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Database setup
-DB_PATH = os.path.join(os.path.dirname(__file__), 'database.db')
+DB_PATH = os.path.join(os.path.dirname(__file__), 'doblajes.db')
 
 def get_db_connection():
     """Create a database connection"""
@@ -47,7 +47,9 @@ def init_db():
             ('Inception', 2010, 'Películas', 'inception.jpg', '', 'Cobb', 0),
             ('Blue Planet II', 2017, 'Documentales', 'blue-planet.jpg', '', 'Narrador', 1),
             ('Anuncio Nike', 2023, 'Locuciones', 'nike.jpg', '', 'Voz en Off', 1),
-            ('Harry Potter y la Piedra Filosofal', 2020, 'Audiolibros', 'harry-potter.jpg', '', 'Harry Potter', 0)
+            ('Harry Potter y la Piedra Filosofal', 2020, 'Audiolibros', 'harry-potter.jpg', '', 'Harry Potter', 0),
+            ('The Last of Us', 2013, 'Videojuegos', 'tlou.jpg', '', 'Joel', 1),
+            ('God of War', 2018, 'Videojuegos', 'gow.jpg', '', 'Kratos', 0)
         ]
         
         cursor.executemany(

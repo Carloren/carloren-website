@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
-import Inicio from './components/Inicio.jsx';
-import Doblajes from './components/Doblajes.jsx';
-import Contacto from './components/Contacto.jsx';
+import Inicio from './pages/Inicio.jsx';
+import Doblajes from './pages/Doblajes.jsx';
+import Contacto from './pages/Contacto.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -23,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar 
+        <Navbar
           theme={theme}
           toggleTheme={toggleTheme}
         />
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
         <Footer />
+        <ScrollToTop />
       </div>
     </Router>
   );

@@ -8,23 +8,23 @@ function Doblajes() {
   const [doblajes, setDoblajes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showImportantOnly, setShowImportantOnly] = useState(false);
+  const [sortByImportant, setSortByImportant] = useState(false);
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 
   useEffect(() => {
-    fetchDoblajes(activeCategory, showImportantOnly);
-  }, [activeCategory, showImportantOnly]);
+    fetchDoblajes(activeCategory, sortByImportant);
+  }, [activeCategory, sortByImportant]);
 
-  const fetchDoblajes = async (category, importantOnly) => {
+  const fetchDoblajes = async (category, importantFirst) => {
     setLoading(true);
     setError(null);
 
     try {
       let url = `${API_URL}/doblajes?category=${encodeURIComponent(category)}`;
-      if (importantOnly) {
-        url += '&important=true';
-      }
+      // if (importantFirst) {
+      //   url += '&important=true';
+      // }
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -35,11 +35,12 @@ function Doblajes() {
 
       // Sort by media priority (video > image > none), then by year DESC
       const sortedData = data.sort((a, b) => {
-        // Define priority: video=4, image=3, named character=2, none=1
+        // Define priority: video=5, image=4, important=3, named character=2, none=1
         const getPriority = (item) => {
-          if (item.video && item.video.trim() !== '') return 4;
-          if (item.mainCharacter && item.mainCharacter.trim() !== '') return 3;
-          if (item.image && item.image.trim() !== '') return 2;
+          if (item.video && item.video.trim() !== '') return 5;
+          if (item.important == 1) return 4;
+          if (item.image && item.image.trim() !== '') return 3;
+          if (item.mainCharacter && item.mainCharacter.trim() !== '') return 2;
           return 1;
         };
 
@@ -47,7 +48,7 @@ function Doblajes() {
         const priorityB = getPriority(b);
 
         // Sort by priority first (descending)
-        if (priorityA !== priorityB) {
+        if (priorityA !== priorityB && importantFirst) {
           return priorityB - priorityA;
         }
 
@@ -86,20 +87,21 @@ function Doblajes() {
 
         {/* Destacados/Todos Switch */}
         <div className="d-flex justify-content-center mb-5">
+          <p className="me-3 align-self-center mb-0">Ordenar por:</p>
           <div className="btn-group" role="group" aria-label="Filter switch">
             <button
               type="button"
-              className={`btn ${showImportantOnly ? 'btn-info' : 'btn-outline-info'}`}
-              onClick={() => setShowImportantOnly(true)}
+              className={`btn ${sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
+              onClick={() => setSortByImportant(true)}
             >
               Destacados
             </button>
             <button
               type="button"
-              className={`btn ${!showImportantOnly ? 'btn-info' : 'btn-outline-info'}`}
-              onClick={() => setShowImportantOnly(false)}
+              className={`btn ${!sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
+              onClick={() => setSortByImportant(false)}
             >
-              Todos
+              Año
             </button>
           </div>
         </div>

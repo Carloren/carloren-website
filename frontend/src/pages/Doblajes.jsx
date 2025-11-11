@@ -8,7 +8,7 @@ function Doblajes() {
   const [doblajes, setDoblajes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [sortByImportant, setSortByImportant] = useState(false);
+  const [sortByImportant, setSortByImportant] = useState(true);
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 

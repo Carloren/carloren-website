@@ -6,11 +6,26 @@ const API_URL = 'http://localhost:3000/api';
 function Doblajes() {
   const [activeCategory, setActiveCategory] = useState('Series');
   const [doblajes, setDoblajes] = useState([]);
+  const [contador, setContador] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortByImportant, setSortByImportant] = useState(true);
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
+
+  useEffect(() => {
+    let count = 0;
+    const interval = setInterval(() => {
+      if (count <= doblajes.length) {
+        setContador(count);
+        count++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
+  }, [doblajes]);
 
   useEffect(() => {
     fetchDoblajes(activeCategory, sortByImportant);
@@ -84,6 +99,7 @@ function Doblajes() {
             </li>
           ))}
         </ul>
+        <p className="text-center mb-4">He participado en <strong>{contador}</strong> {activeCategory.toLowerCase()}</p>
 
         {/* Destacados/Todos Switch */}
         <div className="d-flex justify-content-center mb-5">

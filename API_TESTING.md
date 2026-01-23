@@ -49,7 +49,7 @@ The API will be available at: **http://localhost:3000**
 **Default behavior:** Returns all projects sorted by year (descending)
 
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes"
 ```
 
 **Expected Response:** Array of all dubbing projects
@@ -87,32 +87,32 @@ curl -X GET "http://localhost:3000/api/doblajes"
 
 **Series (TV Shows)**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=Series"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Series"
 ```
 
 **Movies (Películas)**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=Películas"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Películas"
 ```
 
 **Documentaries (Documentales)**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=Documentales"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Documentales"
 ```
 
 **Voice-overs (Locuciones)**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=Locuciones"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Locuciones"
 ```
 
 **Audiobooks (Audiolibros)**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=Audiolibros"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Audiolibros"
 ```
 
 **Video Games (Videojuegos)**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=Videojuegos"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Videojuegos"
 ```
 
 ---
@@ -121,13 +121,13 @@ curl -X GET "http://localhost:3000/api/doblajes?category=Videojuegos"
 
 ```bash
 # Get projects from 2008
-curl -X GET "http://localhost:3000/api/doblajes?year=2008"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?year=2008"
 
 # Get projects from 2021
-curl -X GET "http://localhost:3000/api/doblajes?year=2021"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?year=2021"
 
 # Get recent projects (2023)
-curl -X GET "http://localhost:3000/api/doblajes?year=2023"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?year=2023"
 ```
 
 ---
@@ -136,16 +136,16 @@ curl -X GET "http://localhost:3000/api/doblajes?year=2023"
 
 ```bash
 # Search for "Breaking" (matches "Breaking Bad")
-curl -X GET "http://localhost:3000/api/doblajes?title=Breaking"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?title=Breaking"
 
 # Search for "Planet" (matches "Planet Earth")
-curl -X GET "http://localhost:3000/api/doblajes?title=Planet"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?title=Planet"
 
 # Search for "God" (matches "The Godfather", "God of War")
-curl -X GET "http://localhost:3000/api/doblajes?title=God"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?title=God"
 
 # Case-insensitive search
-curl -X GET "http://localhost:3000/api/doblajes?title=game"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?title=game"
 ```
 
 ---
@@ -154,21 +154,21 @@ curl -X GET "http://localhost:3000/api/doblajes?title=game"
 
 **Get Featured/Important Projects Only** (for homepage display)
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?important=true"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?important=true"
 ```
 
 **Get Non-Featured Projects**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?important=false"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?important=false"
 ```
 
 **Alternative boolean values:**
 ```bash
 # These also work for 'true'
-curl -X GET "http://localhost:3000/api/doblajes?important=1"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?important=1"
 
 # These work for 'false'
-curl -X GET "http://localhost:3000/api/doblajes?important=0"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?important=0"
 ```
 
 ---
@@ -179,19 +179,19 @@ curl -X GET "http://localhost:3000/api/doblajes?important=0"
 
 ```bash
 # Audiobooks from 2021
-curl -X GET "http://localhost:3000/api/doblajes?category=Audiolibros&year=2021"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Audiolibros&year=2021"
 
 # Important series only
-curl -X GET "http://localhost:3000/api/doblajes?category=Series&important=true"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Series&important=true"
 
 # Movies with "God" in title
-curl -X GET "http://localhost:3000/api/doblajes?category=Películas&title=God"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Películas&title=God"
 
 # All important projects from 2017 onwards
-curl -X GET "http://localhost:3000/api/doblajes?important=true&year=2017"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?important=true&year=2017"
 
 # Complex search: Important series with "Game" in title
-curl -X GET "http://localhost:3000/api/doblajes?category=Series&title=Game&important=true"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=Series&title=Game&important=true"
 ```
 
 ---
@@ -199,7 +199,7 @@ curl -X GET "http://localhost:3000/api/doblajes?category=Series&title=Game&impor
 ### 7. Get All Categories
 
 ```bash
-curl -X GET "http://localhost:3000/api/categories"
+curl -X GET "https://carloren-website.onrender.com/api/categories"
 ```
 
 **Expected Response:**
@@ -305,13 +305,13 @@ curl: (7) Failed to connect to localhost port 3000: Connection refused
 
 **3. Invalid Category**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?category=InvalidCategory"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?category=InvalidCategory"
 ```
 **Result:** Returns empty array `[]` (not an error)
 
 **4. Invalid Year Format**
 ```bash
-curl -X GET "http://localhost:3000/api/doblajes?year=notanumber"
+curl -X GET "https://carloren-website.onrender.com/api/doblajes?year=notanumber"
 ```
 **Result:** May cause SQL errors; use valid integers only
 
@@ -324,14 +324,14 @@ curl -X GET "http://localhost:3000/api/doblajes?year=notanumber"
 ```javascript
 // Get all projects
 const getAllProjects = async () => {
-  const response = await fetch('http://localhost:3000/api/doblajes');
+  const response = await fetch('https://carloren-website.onrender.com/api/doblajes');
   const data = await response.json();
   return data;
 };
 
 // Get featured projects for homepage
 const getFeaturedProjects = async () => {
-  const response = await fetch('http://localhost:3000/api/doblajes?important=true');
+  const response = await fetch('https://carloren-website.onrender.com/api/doblajes?important=true');
   const data = await response.json();
   return data;
 };
@@ -343,7 +343,7 @@ const searchProjects = async (category, year, title) => {
   if (year) params.append('year', year);
   if (title) params.append('title', title);
   
-  const response = await fetch(`http://localhost:3000/api/doblajes?${params}`);
+  const response = await fetch(`https://carloren-website.onrender.com/api/doblajes?${params}`);
   const data = await response.json();
   return data;
 };
@@ -365,13 +365,13 @@ const searchProjects = async (category, year, title) => {
 echo "Testing Carloren API..."
 
 echo "1. Testing basic endpoint..."
-curl -s "http://localhost:3000/api/doblajes" | jq length
+curl -s "https://carloren-website.onrender.com/api/doblajes" | jq length
 
 echo "2. Testing categories..."
-curl -s "http://localhost:3000/api/categories" | jq length
+curl -s "https://carloren-website.onrender.com/api/categories" | jq length
 
 echo "3. Testing important filter..."
-curl -s "http://localhost:3000/api/doblajes?important=true" | jq length
+curl -s "https://carloren-website.onrender.com/api/doblajes?important=true" | jq length
 
 echo "All tests completed!"
 ```

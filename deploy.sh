@@ -194,7 +194,7 @@ check_servers() {
     print_info "Checking server status..."
     
     # Check backend
-    if curl -s http://localhost:3000/api/doblajes >/dev/null; then
+    if curl -s https://carloren-website.onrender.com/api/doblajes >/dev/null; then
         print_status "Backend server is running on http://localhost:3000"
     else
         print_error "Backend server is not responding"

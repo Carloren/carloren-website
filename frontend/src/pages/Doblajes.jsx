@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import DubCard from '../components/DubCard.jsx';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://carloren-website.onrender.com/api';
 
 function Doblajes() {
   const [activeCategory, setActiveCategory] = useState('Series');

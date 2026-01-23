@@ -15,7 +15,7 @@ function Contacto() {
                 <div className="contact-info">
                   <div className="mb-3">
                     <i className="bi bi-envelope-fill me-2"></i>
-                    <a href="mailto:carlos@carloren.com">carloren@gmail.com</a>
+                    <a href="mailto:carloren.1996@gmail.com">carloren.1996@gmail.com</a>
                   </div>
                   <div className="mb-3">
                     <i className="bi bi-telephone-fill me-2"></i>

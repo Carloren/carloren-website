@@ -234,7 +234,7 @@ Comprehensive API testing guide available in `API_TESTING.md`.
 cd backend && python server.py
 
 # Test endpoint
-curl http://localhost:3000/api/doblajes
+curl https://carloren-website.onrender.com/api/doblajes
 ```
 
 ## 🚀 Deployment

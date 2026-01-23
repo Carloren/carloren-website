@@ -3,7 +3,7 @@ import BrandCarousel from '../components/BrandCarousel.jsx';
 import { useNavigate } from 'react-router-dom';
 import DubCard from '../components/DubCard.jsx';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://carloren-website.onrender.com/api';
 
 function Inicio() {
   const [importantDoblajes, setImportantDoblajes] = useState([]);

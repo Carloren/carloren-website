@@ -11,6 +11,7 @@ const brands = [
     { name: 'Samsung', img: '/src/assets/logos/samsung.svg', invertible: true, wide: true },
     { name: 'Repsol', img: '/src/assets/logos/repsol.svg', invertible: false, wide: true },
     { name: 'Schweppes', img: '/src/assets/logos/schweppes.svg', invertible: false, wide: true },
+    { name: 'Betis', img: '/src/assets/logos/betis.svg', invertible: false, wide: true },
     { name: 'Mercadona', img: '/src/assets/logos/mercadona.svg', invertible: false, wide: true },
     { name: 'Ministerio de Hacienda', img: '/src/assets/logos/ministerio-hacienda.svg', invertible: false, wide: true },
     { name: 'Movistar Plus', img: '/src/assets/logos/movistar-plus.svg', invertible: true, wide: false },

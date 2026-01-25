@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navbar({ theme, toggleTheme }) {
+function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
   const location = useLocation();
+  const navbarCollapseRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +21,34 @@ function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const navbarCollapse = navbarCollapseRef.current;
+      const navbarToggler = document.querySelector('.navbar-toggler');
+      
+      if (navbarCollapse && 
+          navbarCollapse.classList.contains('show') && 
+          !navbarCollapse.contains(event.target) && 
+          !navbarToggler.contains(event.target)) {
+        // Collapse the navbar
+        const bsCollapse = new window.bootstrap.Collapse(navbarCollapse, { toggle: false });
+        bsCollapse.hide();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
   const isActive = (path) => location.pathname === path;
+
+  const handleNavLinkClick = () => {
+    const navbarCollapse = navbarCollapseRef.current;
+    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+      const bsCollapse = new window.bootstrap.Collapse(navbarCollapse, { toggle: false });
+      bsCollapse.hide();
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNavbar">
@@ -36,12 +64,13 @@ function Navbar({ theme, toggleTheme }) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav" ref={navbarCollapseRef}>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link
                 className={`nav-link ${isActive('/') ? 'active' : ''}`}
                 to="/"
+                onClick={handleNavLinkClick}
               >
                 Inicio
               </Link>
@@ -50,6 +79,7 @@ function Navbar({ theme, toggleTheme }) {
               <Link
                 className={`nav-link ${isActive('/doblajes') ? 'active' : ''}`}
                 to="/doblajes"
+                onClick={handleNavLinkClick}
               >
                 Doblajes
               </Link>
@@ -58,9 +88,20 @@ function Navbar({ theme, toggleTheme }) {
               <Link
                 className={`nav-link ${isActive('/contacto') ? 'active' : ''}`}
                 to="/contacto"
+                onClick={handleNavLinkClick}
               >
                 Contacto
               </Link>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn btn-link nav-link"
+                onClick={toggleLanguage}
+                aria-label="Change language"
+                style={{ fontSize: '1.2rem', padding: '0.5rem' }}
+              >
+                {language === 'es' ? 'ES' : 'EN'}
+              </button>
             </li>
             <li className="nav-item">
               <button

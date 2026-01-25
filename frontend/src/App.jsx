@@ -9,7 +9,11 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 
 function App() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'light';
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem('language') || 'es';
   });
 
   useEffect(() => {
@@ -17,8 +21,17 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute('lang', language);
+    localStorage.setItem('language', language);
+  }, [language]);
+
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(prevLang => prevLang === 'es' ? 'en' : 'es');
   };
 
   return (
@@ -27,6 +40,8 @@ function App() {
         <Navbar
           theme={theme}
           toggleTheme={toggleTheme}
+          language={language}
+          toggleLanguage={toggleLanguage}
         />
         <Routes>
           <Route path="/" element={<Inicio />} />

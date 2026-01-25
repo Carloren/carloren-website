@@ -98,9 +98,12 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
                 className="btn btn-link nav-link"
                 onClick={toggleLanguage}
                 aria-label="Change language"
-                style={{ fontSize: '1.2rem', padding: '0.5rem' }}
               >
-                {language === 'es' ? 'ES' : 'EN'}
+                {language === 'es' ? (
+                  <img src="https://cdn-icons-png.flaticon.com/128/197/197593.png" alt="Spanish" style={{ width: '20px', height: '20px' }} />
+                ) : (
+                  <img src="https://cdn-icons-png.flaticon.com/128/197/197374.png" alt="English" style={{ width: '20px', height: '20px' }} />
+                )}
               </button>
             </li>
             <li className="nav-item">

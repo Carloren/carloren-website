@@ -72,6 +72,42 @@ body {
     filter: invert(1);
 }
 
+/* Dropdown Menu Theming */
+.dropdown-menu {
+    background-color: var(--navbar-bg);
+    border-color: var(--border-color);
+}
+
+.dropdown-item {
+    color: var(--text-color);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.dropdown-item.active {
+    background-color: #0dcaf0;
+    color: white;
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--navbar-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
 .text-justify {
     text-align: justify;
     /*Por algún motivo a bootstrap no le gusta y no tiene justificación de texto*/

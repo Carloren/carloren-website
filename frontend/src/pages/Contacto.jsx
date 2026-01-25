@@ -1,16 +1,17 @@
-function Contacto() {
+import { t } from '../utils/translations.js';
+
+function Contacto({ language }) {
   return (
     <section id="contacto" className="py-5 min-vh-100" style={{ marginTop: '56px' }}>
       <div className="container">
-        <h2 className="text-center mb-5">Contacto</h2>
+        <h2 className="text-center mb-5">{t(language, 'contact.title')}</h2>
         <div className="row justify-content-center">
           <div className="col-lg-6">
             <div className="card shadow-sm">
               <div className="card-body p-4">
-                <h5 className="card-title mb-4">¿Interesado en trabajar conmigo?</h5>
+                <h5 className="card-title mb-4">{t(language, 'contact.cardTitle')}</h5>
                 <p className="card-text mb-4">
-                  Estoy disponible para proyectos de doblaje, locución, audiolibros y más.
-                  No dudes en contactarme para discutir tu próximo proyecto.
+                  {t(language, 'contact.description')}
                 </p>
                 <div className="contact-info">
                   <div className="mb-3">
@@ -23,7 +24,7 @@ function Contacto() {
                   </div>
                   <div className="mb-3">
                     <i className="bi bi-geo-alt-fill me-2"></i>
-                    <span>Madrid, España</span>
+                    <span>{t(language, 'contact.location')}</span>
                   </div>
                 </div>
                 <div className="social-links mt-4">

@@ -1,4 +1,6 @@
-function DubCard({ item }) {
+import { t } from '../utils/translations.js';
+
+function DubCard({ item, language }) {
   return (
     <div className="col-lg-4 col-md-6 work-card">
       <div className="card">
@@ -21,9 +23,9 @@ function DubCard({ item }) {
         <div className="card-body">
           <h5 className="card-title">{item.title}</h5>
           <p className="card-text">
-            <i>{item.mainCharacter ? item.mainCharacter : item.category === "Locuciones" ? "Corporativo" : "Voces adicionales"}</i><br />
+            <i>{item.mainCharacter ? item.mainCharacter : item.category === "Locuciones" ? t(language, 'card.corporateCharacter') : t(language, 'card.defaultCharacter')}</i><br />
             <span className="badge bg-info mt-1">{item.year}</span>
-            <span className="badge bg-secondary ms-1">{item.category}</span>
+            <span className="badge bg-secondary ms-1">{t(language, `doblajes.categories.${item.category}`)}</span>
           </p>
         </div>
       </div>

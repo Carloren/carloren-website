@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { t } from '../utils/translations.js';
 
-function ScrollToTop() {
+function ScrollToTop({ language }) {
   const [isVisible, setIsVisible] = useState(false);
 
   // Show button when page is scrolled down
@@ -33,7 +34,7 @@ function ScrollToTop() {
         <button
           onClick={scrollToTop}
           className="scroll-to-top btn btn-info"
-          aria-label="Scroll to top"
+          aria-label={t(language, 'scroll.toTop')}
         >
           <i className="bi bi-arrow-up"></i>
         </button>

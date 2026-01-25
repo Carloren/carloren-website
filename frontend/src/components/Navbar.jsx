@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { t } from '../utils/translations.js';
 
 function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
   const location = useLocation();
@@ -72,7 +73,7 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
                 to="/"
                 onClick={handleNavLinkClick}
               >
-                Inicio
+                {t(language, 'nav.inicio')}
               </Link>
             </li>
             <li className="nav-item">
@@ -81,7 +82,7 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
                 to="/doblajes"
                 onClick={handleNavLinkClick}
               >
-                Doblajes
+                {t(language, 'nav.doblajes')}
               </Link>
             </li>
             <li className="nav-item">
@@ -90,7 +91,7 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
                 to="/contacto"
                 onClick={handleNavLinkClick}
               >
-                Contacto
+                {t(language, 'nav.contacto')}
               </Link>
             </li>
             <li className="nav-item">

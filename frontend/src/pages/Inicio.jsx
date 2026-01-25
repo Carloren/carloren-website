@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import BrandCarousel from '../components/BrandCarousel.jsx';
 import { useNavigate } from 'react-router-dom';
 import DubCard from '../components/DubCard.jsx';
+import { t } from '../utils/translations.js';
 
 const API_URL = 'https://carloren-website.onrender.com/api';
 
-function Inicio() {
+function Inicio({ language }) {
   const [importantDoblajes, setImportantDoblajes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -64,17 +65,17 @@ function Inicio() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <h1 className="display-3 fw-bold mb-0">Carlos Lorenzo</h1>
+              <h1 className="display-3 fw-bold mb-0">{t(language, 'home.name')}</h1>
               <h2 className="display-7 fw-bold fst-italic mb-4">-Carloren-</h2>
-              <h2 className="h3 mb-4">Actor de voz y locutor profesional</h2>
+              <h2 className="h3 mb-4">{t(language, 'home.subtitle')}</h2>
               <p className="lead mb-4 text-justify">
-                Presto mi voz y doy vida a personajes en series, películas, videojuegos y más.
-                <br />
-                Ya necesites un grito desgarrador, una voz cálida y amigable, o un tono serio y profesional, cuenta conmigo.
+                {t(language, 'home.description').split('\n').map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < t(language, 'home.description').split('\n').length - 1 && <><br /></>}
+                  </span>
+                ))}
               </p>
-              {/* <button className="btn btn-info btn-lg" onClick={() => document.getElementById('important-doblajes')?.scrollIntoView({ behavior: 'smooth' })}>
-                Ver Trabajos
-              </button> */}
             </div>
             <div className="col-lg-6  mt-4">
               <div className="hero-image">
@@ -98,13 +99,13 @@ function Inicio() {
 
       <section id="important-doblajes" className="py-5">
         <div className="container">
-          <h2 className="text-center mb-5">Trabajos Destacados</h2>
+          <h2 className="text-center mb-5">{t(language, 'home.featuredWorks')}</h2>
           <div className="row">
             {loading && (
               <div className="col-12">
                 <div className="spinner-container">
                   <div className="spinner-border text-info" role="status">
-                    <span className="visually-hidden">Cargando...</span>
+                    <span className="visually-hidden">{t(language, 'common.loading')}</span>
                   </div>
                 </div>
               </div>
@@ -113,7 +114,7 @@ function Inicio() {
             {error && (
               <div className="col-12">
                 <div className="alert alert-danger" role="alert">
-                  {error}
+                  {t(language, 'common.error')}
                 </div>
               </div>
             )}
@@ -122,19 +123,19 @@ function Inicio() {
               <div className="col-12">
                 <div className="empty-state">
                   <i className="bi bi-inbox"></i>
-                  <p>No hay trabajos destacados disponibles.</p>
+                  <p>{t(language, 'common.noFeatured')}</p>
                 </div>
               </div>
             )}
 
             {!loading && !error && importantDoblajes.map(item => (
-              <DubCard key={item.id} item={item} />
+              <DubCard key={item.id} item={item} language={language} />
             ))}
           </div>
           {!loading && !error && importantDoblajes.length > 0 && (
             <div className="text-center mt-4">
               <button className="btn btn-info btn-lg" onClick={() => navigate('/doblajes')}>
-                Más trabajos
+                {t(language, 'home.moreWorks')}
               </button>
             </div>
           )}

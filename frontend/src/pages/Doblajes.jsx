@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import DubCard from '../components/DubCard.jsx';
+import { t } from '../utils/translations.js';
 
 const API_URL = 'https://carloren-website.onrender.com/api';
 
-function Doblajes() {
+function Doblajes({ language }) {
   const [activeCategory, setActiveCategory] = useState('Series');
   const [doblajes, setDoblajes] = useState([]);
   const [contador, setContador] = useState(0);
@@ -83,8 +84,8 @@ function Doblajes() {
   return (
     <section id="doblajes" className="py-5" style={{ marginTop: '56px' }}>
       <div className="container">
-        <h2 className="text-center">Mis Trabajos</h2>
-        <h4 className="text-center mb-5"><a className="link-info text-decoration-none" href="https://www.eldoblaje.com/datos/FichaActorDoblaje.asp?id=180068&Orden=A" target="_blank">Mi página en ElDoblaje.com</a></h4>
+        <h2 className="text-center">{t(language, 'doblajes.title')}</h2>
+        <h4 className="text-center mb-5"><a className="link-info text-decoration-none" href="https://www.eldoblaje.com/datos/FichaActorDoblaje.asp?id=180068&Orden=A" target="_blank">{t(language, 'doblajes.subtitle')}</a></h4>
 
         {/* Category Tabs */}
         <ul className="nav nav-pills justify-content-center mb-4">
@@ -94,30 +95,30 @@ function Doblajes() {
                 className={`nav-link ${activeCategory === category ? 'active' : ''}`}
                 onClick={() => setActiveCategory(category)}
               >
-                {category}
+                {t(language, `doblajes.categories.${category}`)}
               </button>
             </li>
           ))}
         </ul>
-        <p className="text-center mb-4">He participado en <strong>{contador}</strong> {activeCategory.toLowerCase()}</p>
+        <p className="text-center mb-4">{t(language, 'doblajes.count')} <strong>{contador}</strong> {t(language, `doblajes.countSuffix.${activeCategory}`)}</p>
 
         {/* Destacados/Todos Switch */}
         <div className="d-flex justify-content-center mb-5">
-          <p className="me-3 align-self-center mb-0">Ordenar por:</p>
+          <p className="me-3 align-self-center mb-0">{t(language, 'doblajes.sortBy')}</p>
           <div className="btn-group" role="group" aria-label="Filter switch">
             <button
               type="button"
               className={`btn ${sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
               onClick={() => setSortByImportant(true)}
             >
-              Destacados
+              {t(language, 'doblajes.sortOptions.important')}
             </button>
             <button
               type="button"
               className={`btn ${!sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
               onClick={() => setSortByImportant(false)}
             >
-              Año
+              {t(language, 'doblajes.sortOptions.year')}
             </button>
           </div>
         </div>
@@ -128,7 +129,7 @@ function Doblajes() {
             <div className="col-12">
               <div className="spinner-container">
                 <div className="spinner-border text-info" role="status">
-                  <span className="visually-hidden">Cargando...</span>
+                  <span className="visually-hidden">{t(language, 'common.loading')}</span>
                 </div>
               </div>
             </div>
@@ -137,7 +138,7 @@ function Doblajes() {
           {error && (
             <div className="col-12">
               <div className="alert alert-danger" role="alert">
-                {error}
+                {t(language, 'common.error')}
               </div>
             </div>
           )}
@@ -146,13 +147,13 @@ function Doblajes() {
             <div className="col-12">
               <div className="empty-state">
                 <i className="bi bi-inbox"></i>
-                <p>No hay trabajos disponibles en esta categoría.</p>
+                <p>{t(language, 'common.noResults')}</p>
               </div>
             </div>
           )}
 
           {!loading && !error && doblajes.map(item => (
-            <DubCard key={item.id} item={item} />
+            <DubCard key={item.id} item={item} language={language} />
           ))}
         </div>
       </div>

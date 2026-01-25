@@ -44,12 +44,12 @@ function App() {
           toggleLanguage={toggleLanguage}
         />
         <Routes>
-          <Route path="/" element={<Inicio />} />
-          <Route path="/doblajes" element={<Doblajes />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/" element={<Inicio language={language} />} />
+          <Route path="/doblajes" element={<Doblajes language={language} />} />
+          <Route path="/contacto" element={<Contacto language={language} />} />
         </Routes>
-        <Footer />
-        <ScrollToTop />
+        <Footer language={language} />
+        <ScrollToTop language={language} />
       </div>
     </Router>
   );

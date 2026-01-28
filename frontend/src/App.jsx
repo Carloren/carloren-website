@@ -44,7 +44,7 @@ function App() {
           toggleLanguage={toggleLanguage}
         />
         <Routes>
-          <Route path="/" element={<Inicio language={language} />} />
+          <Route path="/" element={<Inicio language={language} theme={theme} />} />
           <Route path="/doblajes" element={<Doblajes language={language} />} />
           <Route path="/contacto" element={<Contacto language={language} />} />
         </Routes>

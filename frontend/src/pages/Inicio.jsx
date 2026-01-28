@@ -3,10 +3,11 @@ import BrandCarousel from '../components/BrandCarousel.jsx';
 import { useNavigate } from 'react-router-dom';
 import DubCard from '../components/DubCard.jsx';
 import { t } from '../utils/translations.js';
+import CarlorenLogo from '../assets/images/CarlorenLogo.svg';
 
 const API_URL = 'https://carloren-website.onrender.com/api';
 
-function Inicio({ language }) {
+function Inicio({ language, theme }) {
   const [importantDoblajes, setImportantDoblajes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -65,9 +66,10 @@ function Inicio({ language }) {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <h1 className="display-3 fw-bold mb-0">{t(language, 'home.name')}</h1>
-              <h2 className="display-7 fw-bold fst-italic mb-4">-Carloren-</h2>
-              <h2 className="h3 mb-4">{t(language, 'home.subtitle')}</h2>
+              {/* <h1 className="display-3 fw-bold mb-0">{t(language, 'home.name')}</h1> */}
+              <img src={CarlorenLogo} alt="Carloren Logo" className="display-1 mt-4" style={{ width: '100%', display: 'inline', filter: theme === 'light' ? 'invert(1)' : 'none', marginBottom: '-0.2em' }} />
+              <h2 className="display-7 fw-bold fst-italic mt-0 pt-0 mb-4">-Carlos Lorenzo-</h2>
+              {/* <h2 className="h3 mb-4">{t(language, 'home.subtitle')}</h2> */}
               <p className="lead mb-4 text-justify">
                 {t(language, 'home.description').split('\n').map((line, index) => (
                   <span key={index}>

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { t } from '../utils/translations.js';
+import TitleLogo from '../assets/images/TitleLogo.svg';
 
 function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
   const location = useLocation();
@@ -26,11 +27,11 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
     const handleClickOutside = (event) => {
       const navbarCollapse = navbarCollapseRef.current;
       const navbarToggler = document.querySelector('.navbar-toggler');
-      
-      if (navbarCollapse && 
-          navbarCollapse.classList.contains('show') && 
-          !navbarCollapse.contains(event.target) && 
-          !navbarToggler.contains(event.target)) {
+
+      if (navbarCollapse &&
+        navbarCollapse.classList.contains('show') &&
+        !navbarCollapse.contains(event.target) &&
+        !navbarToggler.contains(event.target)) {
         // Collapse the navbar
         const bsCollapse = new window.bootstrap.Collapse(navbarCollapse, { toggle: false });
         bsCollapse.hide();
@@ -75,7 +76,7 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
           initializeBootstrap();
         }
       }, 100);
-      
+
       // Cleanup interval after 5 seconds
       setTimeout(() => clearInterval(checkBootstrap), 5000);
     }
@@ -95,10 +96,10 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
     event.preventDefault();
     const dropdown = event.currentTarget;
     const dropdownMenu = dropdown.nextElementSibling;
-    
+
     if (dropdownMenu) {
       const isOpen = dropdownMenu.classList.contains('show');
-      
+
       // Close all other dropdowns first
       document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
         if (menu !== dropdownMenu) {
@@ -107,7 +108,7 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
           if (toggle) toggle.setAttribute('aria-expanded', 'false');
         }
       });
-      
+
       // Toggle current dropdown
       if (isOpen) {
         dropdownMenu.classList.remove('show');
@@ -123,7 +124,12 @@ function Navbar({ theme, toggleTheme, language, toggleLanguage }) {
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNavbar">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <strong>CARLOREN</strong>
+          <img
+            className='navbar-logo'
+            src={TitleLogo}
+            alt="Carloren"
+          />
+          {/* <strong>CARLOREN</strong> */}
         </Link>
         <button
           className="navbar-toggler"

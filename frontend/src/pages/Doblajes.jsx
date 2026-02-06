@@ -15,9 +15,24 @@ function Doblajes({ language }) {
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 
   useEffect(() => {
+    // Function to extract base title (removing season/part indicators)
+    const getBaseTitle = (title) => {
+      // Remove common season/part patterns like T1, T2, S1, S2, Season X, Part X, etc.
+      return title.replace(/\s+(T\d+|S\d+|Season\s+\d+|Part\s+\d+|Temporada\s+\d+|Parte\s+\d+)$/i, '').trim();
+    };
+
+    // Count unique base titles
+    const uniqueTitles = new Set();
+    doblajes.forEach(item => {
+      const baseTitle = getBaseTitle(item.title);
+      uniqueTitles.add(baseTitle);
+    });
+
     let count = 0;
+    let length = uniqueTitles.size;
+
     const interval = setInterval(() => {
-      if (count <= doblajes.length) {
+      if (count <= length) {
         setContador(count);
         count++;
       } else {
@@ -51,7 +66,7 @@ function Doblajes({ language }) {
 
       // Sort by media priority (video > image > none), then by year DESC
       const sortedData = data.sort((a, b) => {
-        // Define priority: video=5, image=4, important=3, named character=2, none=1
+        // Define priority: video=5, important=4, image=3, named character=2, none=1
         const getPriority = (item) => {
           if (item.video && item.video.trim() !== '') return 5;
           if (item.important == 1) return 4;
@@ -69,7 +84,17 @@ function Doblajes({ language }) {
         }
 
         // If same priority, sort by year (descending)
+        // If same year, sort by main character or not
+        if (a.year === b.year) {
+          const aHasChar = a.mainCharacter && a.mainCharacter.trim() !== '';
+          const bHasChar = b.mainCharacter && b.mainCharacter.trim() !== '';
+          if (aHasChar !== bHasChar) {
+            return bHasChar ? 1 : -1;
+          }
+          return aHasChar ? a.mainCharacter.localeCompare(b.mainCharacter) : 0;
+        }
         return b.year - a.year;
+
       });
 
       setDoblajes(sortedData);

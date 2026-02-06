@@ -48,6 +48,15 @@ function Inicio({ language, theme }) {
         }
 
         // If same priority, sort by year (descending)
+        // If same year, sort by main character or not
+        if (a.year === b.year) {
+          const aHasChar = a.mainCharacter && a.mainCharacter.trim() !== '';
+          const bHasChar = b.mainCharacter && b.mainCharacter.trim() !== '';
+          if (aHasChar !== bHasChar) {
+            return bHasChar ? 1 : -1;
+          }
+          return aHasChar ? a.mainCharacter.localeCompare(b.mainCharacter) : 0;
+        }
         return b.year - a.year;
       });
 

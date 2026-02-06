@@ -41,21 +41,60 @@ function Doblajes({ language }) {
     }, 10);
 
     return () => clearInterval(interval);
-  }, [doblajes]);
+  }, [loading]);
 
   useEffect(() => {
-    fetchDoblajes(activeCategory, sortByImportant);
-  }, [activeCategory, sortByImportant]);
+    fetchDoblajes(activeCategory);
+  }, [activeCategory]);
 
-  const fetchDoblajes = async (category, importantFirst) => {
+  // Separate effect to handle sorting when sortByImportant changes
+  useEffect(() => {
+    if (doblajes.length > 0) {
+      const sortedData = sortDoblajes(doblajes, sortByImportant);
+      setDoblajes(sortedData);
+    }
+  }, [sortByImportant]);
+
+  // Sorting function extracted for reuse
+  const sortDoblajes = (data, importantFirst) => {
+    return [...data].sort((a, b) => {
+      // Define priority: video=5, important=4, image=3, named character=2, none=1
+      const getPriority = (item) => {
+        if (item.video && item.video.trim() !== '') return 5;
+        if (item.important == 1) return 4;
+        if (item.image && item.image.trim() !== '') return 3;
+        if (item.mainCharacter && item.mainCharacter.trim() !== '') return 2;
+        return 1;
+      };
+
+      const priorityA = getPriority(a);
+      const priorityB = getPriority(b);
+
+      // Sort by priority first (descending)
+      if (priorityA !== priorityB && importantFirst) {
+        return priorityB - priorityA;
+      }
+
+      // If same priority, sort by year (descending)
+      // If same year, sort by main character or not
+      if (a.year === b.year) {
+        const aHasChar = a.mainCharacter && a.mainCharacter.trim() !== '';
+        const bHasChar = b.mainCharacter && b.mainCharacter.trim() !== '';
+        if (aHasChar !== bHasChar) {
+          return bHasChar ? 1 : -1;
+        }
+        return aHasChar ? a.mainCharacter.localeCompare(b.mainCharacter) : 0;
+      }
+      return b.year - a.year;
+    });
+  };
+
+  const fetchDoblajes = async (category) => {
     setLoading(true);
     setError(null);
 
     try {
       let url = `${API_URL}/doblajes?category=${encodeURIComponent(category)}`;
-      // if (importantFirst) {
-      //   url += '&important=true';
-      // }
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -63,40 +102,7 @@ function Doblajes({ language }) {
       }
 
       const data = await response.json();
-
-      // Sort by media priority (video > image > none), then by year DESC
-      const sortedData = data.sort((a, b) => {
-        // Define priority: video=5, important=4, image=3, named character=2, none=1
-        const getPriority = (item) => {
-          if (item.video && item.video.trim() !== '') return 5;
-          if (item.important == 1) return 4;
-          if (item.image && item.image.trim() !== '') return 3;
-          if (item.mainCharacter && item.mainCharacter.trim() !== '') return 2;
-          return 1;
-        };
-
-        const priorityA = getPriority(a);
-        const priorityB = getPriority(b);
-
-        // Sort by priority first (descending)
-        if (priorityA !== priorityB && importantFirst) {
-          return priorityB - priorityA;
-        }
-
-        // If same priority, sort by year (descending)
-        // If same year, sort by main character or not
-        if (a.year === b.year) {
-          const aHasChar = a.mainCharacter && a.mainCharacter.trim() !== '';
-          const bHasChar = b.mainCharacter && b.mainCharacter.trim() !== '';
-          if (aHasChar !== bHasChar) {
-            return bHasChar ? 1 : -1;
-          }
-          return aHasChar ? a.mainCharacter.localeCompare(b.mainCharacter) : 0;
-        }
-        return b.year - a.year;
-
-      });
-
+      const sortedData = sortDoblajes(data, sortByImportant);
       setDoblajes(sortedData);
     } catch (error) {
       console.error('Error:', error);

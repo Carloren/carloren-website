@@ -48,7 +48,7 @@ function App() {
           <Route path="/doblajes" element={<Doblajes language={language} />} />
           <Route path="/contacto" element={<Contacto language={language} />} />
         </Routes>
-        <Footer language={language} />
+        <Footer language={language} theme={theme} />
         <ScrollToTop language={language} />
       </div>
     </Router>

@@ -76,7 +76,7 @@ function Inicio({ language, theme }) {
           <div className="row align-items-center">
             <div className="col-lg-6">
               {/* <h1 className="display-3 fw-bold mb-0">{t(language, 'home.name')}</h1> */}
-              <img src={CarlorenLogo} alt="Carloren Logo" className="display-1 mt-4" style={{ width: '100%', display: 'inline', filter: theme === 'light' ? 'invert(1)' : 'none', marginBottom: '-0.2em' }} />
+              <img src={CarlorenLogo} alt="Carloren Logo" className="display-1 mt-4" style={{ width: '100%', display: 'inline', filter: theme === 'light' ? 'none' : 'invert(1)', marginBottom: '-0.2em' }} />
               <h2 className="display-7 fw-bold fst-italic mt-0 pt-0 mb-4">-Carlos Lorenzo-</h2>
               {/* <h2 className="h3 mb-4">{t(language, 'home.subtitle')}</h2> */}
               <p className="lead mb-4 text-justify">

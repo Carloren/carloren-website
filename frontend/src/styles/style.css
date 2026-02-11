@@ -60,23 +60,22 @@ body {
     margin-right: 8px;
     margin-bottom: -0.5em;
     margin-top: -0.5em;
-
+    filter: invert(1);
 }
 
 .navbar-logo:hover {
-    /* filter: invert(31%) sepia(21%) saturate(6333%) hue-rotate(147deg) brightness(103%) contrast(90%) !important; */
-    filter: drop-shadow(0 0 5px #0dcaf0) !important;
+    filter: invert(1) drop-shadow(0 0 5px #0dcaf0) !important;
     transition: 0.3s;
 }
 
 /* Invert logo colors when in light theme */
 [data-theme="light"] .navbar-logo {
-    filter: invert(1);
+        filter: invert(0) !important;
 }
 
 [data-theme="light"] .navbar-logo:hover {
     /* filter: invert(31%) sepia(21%) saturate(6333%) hue-rotate(147deg) brightness(103%) contrast(90%) !important; */
-    filter: invert(1) drop-shadow(0 0 5px #0dcaf0) !important;
+    filter: invert(0) drop-shadow(0 0 5px #0dcaf0) !important;
     transition: 0.3s;
 }
 

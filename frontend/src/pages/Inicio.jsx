@@ -13,6 +13,11 @@ function Inicio({ language, theme }) {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // Set document title
+  useEffect(() => {
+    document.title = t(language, 'pageTitle.home');
+  }, [language]);
+
   useEffect(() => {
     fetchImportantDoblajes();
   }, []);

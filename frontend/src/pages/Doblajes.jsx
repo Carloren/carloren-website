@@ -14,6 +14,11 @@ function Doblajes({ language }) {
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 
+  // Set document title
+  useEffect(() => {
+    document.title = t(language, 'pageTitle.doblajes');
+  }, [language]);
+
   useEffect(() => {
     // Function to extract base title (removing season/part indicators)
     const getBaseTitle = (title) => {

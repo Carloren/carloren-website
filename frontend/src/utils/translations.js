@@ -1,6 +1,13 @@
 // Translation system for the Carloren website
 export const translations = {
   es: {
+    // Page titles
+    pageTitle: {
+      home: "Carloren - Carlos Lorenzo",
+      doblajes: "Carloren - Doblajes", 
+      contacto: "Carloren - Contacto"
+    },
+
     // Navigation
     nav: {
       inicio: "Inicio",
@@ -81,6 +88,13 @@ export const translations = {
   },
 
   en: {
+    // Page titles
+    pageTitle: {
+      home: "Carloren - Carlos Lorenzo",
+      doblajes: "Carloren - Voice Works",
+      contacto: "Carloren - Contact"
+    },
+
     // Navigation
     nav: {
       inicio: "Home",

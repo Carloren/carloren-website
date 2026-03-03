@@ -1,6 +1,12 @@
+import { useEffect } from 'react';
 import { t } from '../utils/translations.js';
 
 function Contacto({ language }) {
+  // Set document title
+  useEffect(() => {
+    document.title = t(language, 'pageTitle.contacto');
+  }, [language]);
+
   return (
     <section id="contacto" className="py-5" style={{ marginTop: '56px' }}>
       <div className="container">

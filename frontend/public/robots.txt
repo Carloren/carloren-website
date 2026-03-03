@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /doblajes
+Allow: /contacto
+
+# Sitemap
+Sitemap: /sitemap.xml
+
+# Disallow crawling of API endpoints if any
+Disallow: /api/
+
+# Common directories to exclude
+Disallow: /_headers
+Disallow: /admin/
+Disallow: /private/

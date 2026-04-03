@@ -98,7 +98,7 @@ function Inicio({ language, theme }) {
                 <iframe
                   className="rounded shadow-lg w-100"
                   style={{ aspectRatio: '16/9' }}
-                  src="https://www.youtube.com/embed/M7AltvUXAUA?si=qqfkPkcSZUC3RY3r"
+                  src="https://www.youtube.com/embed/yG1fxcG-2FM"
                   title="Demo de doblaje"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"

@@ -19,7 +19,7 @@ const brands = [
     { name: 'SkyShowtime', img: getImagePath('sky.svg'), invertible: true, wide: false },
     { name: 'Samsung', img: getImagePath('Samsung.svg'), invertible: true, wide: true },
     { name: 'Repsol', img: getImagePath('repsol.svg'), invertible: false, wide: true },
-    // { name: 'Betis', img: getImagePath('betis.svg'), invertible: false, wide: true },
+    { name: 'Betis', img: getImagePath('betis.svg'), invertible: false, wide: true },
     { name: 'Schweppes', img: getImagePath('Schweppes.svg'), invertible: false, wide: true },
     { name: 'Mercadona', img: getImagePath('Mercadona.svg'), invertible: false, wide: true },
     { name: 'Ministerio de Hacienda', img: getImagePath('ministerio-hacienda.svg'), invertible: false, wide: true },

@@ -75,15 +75,16 @@ function Inicio({ language, theme }) {
   };
 
   return (
-    <>
+    <main>
       <section id="inicio" className="hero-section">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              {/* <h1 className="display-3 fw-bold mb-0">{t(language, 'home.name')}</h1> */}
-              <img src={CarlorenLogo} alt="Carloren Logo" className="display-1 mt-4" style={{ width: '100%', display: 'inline', filter: theme === 'light' ? 'none' : 'invert(1)', marginBottom: '-0.2em' }} />
-              <h2 className="display-7 fw-bold fst-italic mt-0 pt-0 mb-4">-Carlos Lorenzo-</h2>
-              {/* <h2 className="h3 mb-4">{t(language, 'home.subtitle')}</h2> */}
+              <header>
+                <h1 className="visually-hidden">Carlos Lorenzo - Carloren - Actor de Voz Profesional</h1>
+                <img src={CarlorenLogo} alt="Carloren Logo" className="display-1 mt-4" style={{ width: '100%', display: 'inline', filter: theme === 'light' ? 'none' : 'invert(1)', marginBottom: '-0.2em' }} />
+                <h2 className="display-7 fw-bold fst-italic mt-0 pt-0 mb-4">-Carlos Lorenzo-</h2>
+              </header>
               <p className="lead mb-4 text-justify">
                 {t(language, 'home.description').split('\n').map((line, index) => (
                   <span key={index}>
@@ -99,7 +100,7 @@ function Inicio({ language, theme }) {
                   className="rounded shadow-lg w-100"
                   style={{ aspectRatio: '16/9' }}
                   src="https://www.youtube.com/embed/yG1fxcG-2FM"
-                  title="Demo de doblaje"
+                  title="Demo de doblaje - Carlos Lorenzo"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen>
@@ -115,7 +116,9 @@ function Inicio({ language, theme }) {
 
       <section id="important-doblajes" className="py-5">
         <div className="container">
-          <h2 className="text-center mb-5">{t(language, 'home.featuredWorks')}</h2>
+          <header>
+            <h2 className="text-center mb-5">{t(language, 'home.featuredWorks')}</h2>
+          </header>
           <div className="row">
             {loading && (
               <div className="col-12">
@@ -138,7 +141,7 @@ function Inicio({ language, theme }) {
             {!loading && !error && importantDoblajes.length === 0 && (
               <div className="col-12">
                 <div className="empty-state">
-                  <i className="bi bi-inbox"></i>
+                  <i className="bi bi-inbox" aria-hidden="true"></i>
                   <p>{t(language, 'common.noFeatured')}</p>
                 </div>
               </div>
@@ -150,14 +153,14 @@ function Inicio({ language, theme }) {
           </div>
           {!loading && !error && importantDoblajes.length > 0 && (
             <div className="text-center mt-4">
-              <button className="btn btn-info btn-lg" onClick={() => navigate('/doblajes')}>
+              <button className="btn btn-info btn-lg" onClick={() => navigate('/doblajes')} aria-label={`${t(language, 'home.moreWorks')} - Ver todos los doblajes de Carlos Lorenzo`}>
                 {t(language, 'home.moreWorks')}
               </button>
             </div>
           )}
         </div>
       </section>
-    </>
+    </main>
   );
 }
 

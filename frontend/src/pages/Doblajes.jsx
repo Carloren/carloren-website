@@ -36,6 +36,10 @@ function Doblajes({ language }) {
     let count = 0;
     let length = uniqueTitles.size;
 
+    // Calculate interval to make animation last exactly 2 seconds
+    const animationDuration = 1500; // 2 seconds
+    const intervalTime = length > 0 ? animationDuration / length : 50;
+
     const interval = setInterval(() => {
       if (count <= length) {
         setContador(count);
@@ -43,7 +47,7 @@ function Doblajes({ language }) {
       } else {
         clearInterval(interval);
       }
-    }, 10);
+    }, intervalTime);
 
     return () => clearInterval(interval);
   }, [loading]);

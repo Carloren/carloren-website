@@ -36,6 +36,10 @@ function Doblajes({ language }) {
     let count = 0;
     let length = uniqueTitles.size;
 
+    // Calculate interval to make animation last exactly 2 seconds
+    const animationDuration = 1500; // 2 seconds
+    const intervalTime = length > 0 ? animationDuration / length : 50;
+
     const interval = setInterval(() => {
       if (count <= length) {
         setContador(count);
@@ -43,7 +47,7 @@ function Doblajes({ language }) {
       } else {
         clearInterval(interval);
       }
-    }, 10);
+    }, intervalTime);
 
     return () => clearInterval(interval);
   }, [loading]);
@@ -118,82 +122,92 @@ function Doblajes({ language }) {
   };
 
   return (
-    <section id="doblajes" className="py-5" style={{ marginTop: '56px' }}>
-      <div className="container">
-        <h2 className="text-center">{t(language, 'doblajes.title')}</h2>
-        <h4 className="text-center mb-5"><a className="link-info text-decoration-none" href="https://www.eldoblaje.com/datos/FichaActorDoblaje.asp?id=180068&Orden=A" target="_blank">{t(language, 'doblajes.subtitle')}</a></h4>
+    <main>
+      <section id="doblajes" className="py-5" style={{ marginTop: '56px' }}>
+        <div className="container">
+          <header>
+            <h1 className="text-center">{t(language, 'doblajes.title')}</h1>
+            <p className="text-center mb-5 h4"><a className="link-info text-decoration-none" href="https://www.eldoblaje.com/datos/FichaActorDoblaje.asp?id=180068&Orden=A" target="_blank" rel="noopener">{t(language, 'doblajes.subtitle')}</a></p>
+          </header>
 
-        {/* Category Tabs */}
-        <ul className="nav nav-pills justify-content-center mb-4">
-          {categories.map(category => (
-            <li key={category} className="nav-item">
+          {/* Category Navigation */}
+          <nav className="mb-4" aria-label="Categorías de trabajos">
+            <ul className="nav nav-pills justify-content-center">
+              {categories.map(category => (
+                <li key={category} className="nav-item">
+                  <button
+                    className={`nav-link ${activeCategory === category ? 'active' : ''}`}
+                    onClick={() => setActiveCategory(category)}
+                    aria-pressed={activeCategory === category}
+                  >
+                    {t(language, `doblajes.categories.${category}`)}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          
+          <p className="text-center mb-4">{t(language, 'doblajes.count')} <strong>{contador}</strong> {t(language, `doblajes.countSuffix.${activeCategory}`)}</p>
+
+          {/* Sort Controls */}
+          <div className="d-flex justify-content-center mb-5">
+            <p className="me-3 align-self-center mb-0">{t(language, 'doblajes.sortBy')}</p>
+            <div className="btn-group" role="group" aria-label="Opciones de ordenamiento">
               <button
-                className={`nav-link ${activeCategory === category ? 'active' : ''}`}
-                onClick={() => setActiveCategory(category)}
+                type="button"
+                className={`btn ${sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
+                onClick={() => setSortByImportant(true)}
+                aria-pressed={sortByImportant}
               >
-                {t(language, `doblajes.categories.${category}`)}
+                {t(language, 'doblajes.sortOptions.important')}
               </button>
-            </li>
-          ))}
-        </ul>
-        <p className="text-center mb-4">{t(language, 'doblajes.count')} <strong>{contador}</strong> {t(language, `doblajes.countSuffix.${activeCategory}`)}</p>
-
-        {/* Destacados/Todos Switch */}
-        <div className="d-flex justify-content-center mb-5">
-          <p className="me-3 align-self-center mb-0">{t(language, 'doblajes.sortBy')}</p>
-          <div className="btn-group" role="group" aria-label="Filter switch">
-            <button
-              type="button"
-              className={`btn ${sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
-              onClick={() => setSortByImportant(true)}
-            >
-              {t(language, 'doblajes.sortOptions.important')}
-            </button>
-            <button
-              type="button"
-              className={`btn ${!sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
-              onClick={() => setSortByImportant(false)}
-            >
-              {t(language, 'doblajes.sortOptions.year')}
-            </button>
+              <button
+                type="button"
+                className={`btn ${!sortByImportant ? 'btn-info' : 'btn-outline-info'}`}
+                onClick={() => setSortByImportant(false)}
+                aria-pressed={!sortByImportant}
+              >
+                {t(language, 'doblajes.sortOptions.year')}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="row">
-          {loading && (
-            <div className="col-12">
-              <div className="spinner-container">
-                <div className="spinner-border text-info" role="status">
-                  <span className="visually-hidden">{t(language, 'common.loading')}</span>
+          {/* Works Grid */}
+          <div className="row">
+            {loading && (
+              <div className="col-12">
+                <div className="spinner-container">
+                  <div className="spinner-border text-info" role="status">
+                    <span className="visually-hidden">{t(language, 'common.loading')}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {error && (
-            <div className="col-12">
-              <div className="alert alert-danger" role="alert">
-                {t(language, 'common.error')}
+            {error && (
+              <div className="col-12">
+                <div className="alert alert-danger" role="alert">
+                  {t(language, 'common.error')}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {!loading && !error && doblajes.length === 0 && (
-            <div className="col-12">
-              <div className="empty-state">
-                <i className="bi bi-inbox"></i>
-                <p>{t(language, 'common.noResults')}</p>
+            {!loading && !error && doblajes.length === 0 && (
+              <div className="col-12">
+                <div className="empty-state">
+                  <i className="bi bi-inbox" aria-hidden="true"></i>
+                  <p>{t(language, 'common.noResults')}</p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {!loading && !error && doblajes.map(item => (
-            <DubCard key={item.id} item={item} language={language} />
-          ))}
+            {!loading && !error && doblajes.map(item => (
+              <DubCard key={item.id} item={item} language={language} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }
 

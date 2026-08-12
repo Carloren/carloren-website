@@ -4,33 +4,27 @@ Professional voice acting portfolio website for Carlos Lorenzo (Carloren), showc
 
 ## 🎯 Overview
 
-This is a full-stack web application that presents the professional voice acting portfolio of Carlos Lorenzo. Built with modern web technologies, the site features a responsive design with dark/light theme support, advanced filtering capabilities, and a clean, industry-standard presentation perfect for showcasing voice acting work.
+This is a static single-page application that presents the professional voice acting portfolio of Carlos Lorenzo. Built with modern web technologies, the site features a responsive design with dark/light theme support, advanced filtering capabilities, and a clean, industry-standard presentation perfect for showcasing voice acting work.
 
 ## 🛠️ Tech Stack
-
-### Backend
-- **Python 3.x** - Core runtime environment
-- **Flask 3.0.0** - Lightweight web framework
-- **Flask-CORS 4.0.0** - Cross-origin resource sharing support
-- **SQLite** - Embedded database for dubbing projects storage
 
 ### Frontend
 - **React 18.2.0** - Modern UI library for building user interfaces
 - **Vite 5.0.0** - Fast build tool and development server
 - **React Router DOM 7.9.3** - Client-side routing and navigation
+- **Swiper** - Brand logo carousel
 - **CSS3** - Custom styling with CSS variables for theming
 
+### Data
+- All portfolio content lives in [`frontend/src/data/doblajes.json`](frontend/src/data/doblajes.json) and is bundled at build time — no backend or database involved. Images/videos are hosted externally (Cloudinary/YouTube) and referenced by URL.
+
 ### DevOps & Deployment
-- **Netlify** - Frontend hosting platform
-- **Render.com** - Backend API hosting
-- **Custom deployment script** - Automated deployment process
+- **Netlify** - Static hosting, builds and deploys automatically on push
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- Python 3.x
-- pip (Python package installer)
+- Node.js (v18 or higher)
 
 ### Installation
 
@@ -40,26 +34,19 @@ This is a full-stack web application that presents the professional voice acting
    cd carloren-website
    ```
 
-2. **Backend Setup:**
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   python server.py
-   ```
-   Backend will run on http://localhost:3000
-
-3. **Frontend Setup (in a new terminal):**
+2. **Frontend Setup:**
    ```bash
    cd frontend
    npm install
    npm run dev
    ```
-   Frontend will run on http://localhost:5173
+   The site will run on http://localhost:5173
 
 ### Production Build
 ```bash
 cd frontend
 npm run build
+npm run preview # to test the production build locally
 ```
 
 ## 📁 Project Structure
@@ -67,57 +54,47 @@ npm run build
 ```
 carloren-website/
 ├── 📄 README.md                    # Project documentation
-├── 📄 API_TESTING.md              # Comprehensive API testing guide
-├── 📄 package.json                # Root package configuration
-├── 📄 netlify.toml                # Netlify deployment configuration
-├── 📄 deploy.sh                   # Automated deployment script
+├── 📄 netlify.toml                 # Netlify deployment configuration
 │
-├── 🐍 backend/                    # Python Flask API server
-│   ├── 📄 server.py               # Main Flask application
-│   ├── 📄 requirements.txt        # Python dependencies
-│   ├── 📄 create_doblajes_db.py   # Database initialization script
-│   └── 🗄️ database files          # SQLite databases (created on first run)
-│
-└── ⚛️ frontend/                   # React application
-    ├── 📄 package.json            # Frontend dependencies & scripts
-    ├── 📄 vite.config.js          # Vite build configuration
-    ├── 📄 index.html              # HTML entry point
+└── ⚛️ frontend/                    # React application
+    ├── 📄 package.json             # Frontend dependencies & scripts
+    ├── 📄 vite.config.js           # Vite build configuration
+    ├── 📄 index.html               # HTML entry point
     │
-    ├── 📁 public/                 # Static public assets
-    │   ├── 📄 _headers             # Netlify headers configuration
-    │   └── 📄 sitemap.xml          # SEO sitemap
+    ├── 📁 public/                  # Static public assets
+    │   ├── 📄 _headers              # Netlify headers configuration
+    │   ├── 📄 robots.txt             # Crawler rules
+    │   └── 📄 sitemap.xml            # SEO sitemap
     │
-    └── 📁 src/                    # React source code
-        ├── 📄 main.jsx            # Application entry point
-        ├── 📄 App.jsx             # Main app component with routing
-        ├── 📄 index.css           # Global styles & CSS variables
+    └── 📁 src/                     # React source code
+        ├── 📄 main.jsx             # Application entry point
+        ├── 📄 App.jsx              # Main app component with routing
+        ├── 📄 index.css            # Global styles & CSS variables
         │
-        ├── 📁 components/         # Reusable React components
-        │   ├── 📄 Navbar.jsx      # Navigation with theme toggle
-        │   ├── 📄 Footer.jsx      # Site footer
-        │   ├── 📄 DubCard.jsx     # Portfolio project card
-        │   ├── 📄 BrandCarousel.jsx # Client/company logo carousel
-        │   └── 📄 ScrollToTop.jsx # Auto-scroll functionality
+        ├── 📁 components/          # Reusable React components
+        │   ├── 📄 Navbar.jsx       # Navigation with theme toggle
+        │   ├── 📄 Footer.jsx       # Site footer
+        │   ├── 📄 DubCard.jsx      # Portfolio project card
+        │   ├── 📄 BrandCarousel.jsx # Client/company logo carousel (Swiper)
+        │   └── 📄 ScrollToTop.jsx  # Auto-scroll functionality
         │
-        ├── 📁 pages/              # Route page components
-        │   ├── 📄 Inicio.jsx      # Home page (featured works)
-        │   ├── 📄 Doblajes.jsx    # Full portfolio with filters
-        │   └── 📄 Contacto.jsx    # Contact information page
+        ├── 📁 pages/               # Route page components
+        │   ├── 📄 Inicio.jsx       # Home page (featured works)
+        │   ├── 📄 Doblajes.jsx     # Full portfolio with filters
+        │   └── 📄 Contacto.jsx     # Contact information page
         │
-        ├── 📁 styles/             # Component-specific styles
-        │   └── 📄 style.css       # Additional styling
+        ├── 📁 data/                # Portfolio content
+        │   └── 📄 doblajes.json    # All dubbing/voice-acting entries
         │
-        ├── 📁 utils/              # Utility functions
+        ├── 📁 styles/              # Component-specific styles
+        │   └── 📄 style.css        # Additional styling
+        │
+        ├── 📁 utils/               # Utility functions
         │   └── 📄 translations.js # Language/translation helpers
         │
-        └── 📁 assets/             # Static media assets
-            ├── 📁 images/         # Project screenshots & photos
-            └── 📁 logos/          # Brand and company logos
-        │   └── 📄 style.css       # Component-specific styles
-        │
-        └── 📁 assets/             # Static assets
-            ├── 📁 images/         # Project images and photos
-            └── 📁 logos/          # Brand and company logos
+        └── 📁 assets/              # Static media assets
+            ├── 📁 images/          # Site branding (logo, favicon)
+            └── 📁 logos/           # Brand and company logos
 ```
 
 ## ✨ Features
@@ -129,23 +106,21 @@ carloren-website/
   - 📚 **Documentales** - Documentary narrations
   - 🎤 **Locuciones** - Voice-over work and commercials
   - 📖 **Audiolibros** - Audiobook narrations
+  - 🎮 **Videojuegos** - Video game dubbing work
 
 ### User Experience & Features
 - 🌟 **Featured Works**: Carefully curated important projects displayed on homepage
 - 🌓 **Theme Toggle**: Seamless dark/light mode switching with localStorage persistence
 - 📱 **Responsive Design**: Mobile-first approach ensuring optimal viewing on all devices
-- 🔍 **Advanced Filtering**: Multi-parameter search by year, title, category, or importance level
-- ⚡ **Optimized Performance**: Vite-powered build system for lightning-fast loading
+- 🔍 **Advanced Filtering**: Client-side filtering by category, year, and importance
+- ⚡ **Optimized Performance**: Vite-powered build, fully static, no backend round-trip
 - 🎨 **Professional UI**: Clean, modern design that highlights the portfolio content
 - 🎯 **Intuitive Navigation**: User-friendly interface designed for casting directors and industry professionals
 
 ### Technical Features
-- 🏢 **Brand Integration**: Dynamic carousel showcasing collaboration with major networks and companies
-- 🔄 **Real-time Filtering**: Client-side filtering with instant results
-- 📊 **RESTful API**: Well-documented backend API with comprehensive testing suite
+- 🏢 **Brand Integration**: Swiper-powered carousel showcasing collaboration with major networks and companies
+- 🔄 **Real-time Filtering**: Client-side filtering with instant results, no network requests
 - 🗂️ **Category Management**: Organized content across multiple voice acting disciplines
-- 💾 **Data Persistence**: Reliable SQLite database with automated initialization
-- 🚀 **Modern Stack**: Built with current web technologies and best practices
 
 ## 🛣️ Application Routes
 
@@ -155,76 +130,29 @@ carloren-website/
 | `/doblajes` | `Doblajes.jsx` | Complete portfolio with filtering |
 | `/contacto` | `Contacto.jsx` | Contact information and form |
 
-## 🔌 API Endpoints
+## 📊 Adding a new work
 
-### GET `/api/doblajes`
-Fetches the list of dubbing projects with optional filters.
+There is no database or API to update. Edit [`frontend/src/data/doblajes.json`](frontend/src/data/doblajes.json) directly and add a new entry:
 
-**Query Parameters:**
-- `year` (optional): Filter by specific year
-- `title` (optional): Search by title (partial match)
-- `category` (optional): Filter by category type
-- `important` (optional): Filter important works (true/false)
-
-**Response Format:**
 ```json
 {
-  "doblajes": [
-    {
-      "id": 1,
-      "title": "Breaking Bad",
-      "year": 2008,
-      "category": "Series",
-      "image": "breaking-bad.jpg",
-      "video": "",
-      "mainCharacter": "Walter White",
-      "important": 1
-    }
-  ]
+  "id": 163,
+  "title": "Project title",
+  "year": 2026,
+  "category": "Series",
+  "image": "https://res.cloudinary.com/.../image.jpg",
+  "video": "",
+  "mainCharacter": "Character (Original actor)",
+  "important": 1
 }
 ```
 
-**Example Requests:**
-```bash
-# Get all projects
-GET /api/doblajes
+- `id`: next free number (use the highest existing `id` + 1).
+- `category`: must exactly match one of `Series`, `Películas`, `Documentales`, `Locuciones`, `Audiolibros`, `Videojuegos`.
+- `image` / `video`: upload the asset to Cloudinary (or link a YouTube embed) and paste the resulting URL. `video` takes visual priority over `image` when both are present.
+- `important`: `1` to feature it on the homepage, `0` otherwise.
 
-# Filter by category
-GET /api/doblajes?category=Series
-
-# Search by title
-GET /api/doblajes?title=Breaking
-
-# Get featured works only
-GET /api/doblajes?important=true
-
-# Combined filters
-GET /api/doblajes?category=Películas&year=2020
-```
-
-### GET `/api/categories`
-Returns all available project categories.
-
-**Response Format:**
-```json
-{
-  "categories": ["Series", "Películas", "Documentales", "Locuciones", "Audiolibros"]
-}
-```
-
-## 📊 Database Schema
-
-### Doblajes Table
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | INTEGER PRIMARY KEY | Unique identifier |
-| `title` | TEXT | Project title |
-| `year` | INTEGER | Release year |
-| `category` | TEXT | Project category |
-| `image` | TEXT | Image filename |
-| `video` | TEXT | Video URL (optional) |
-| `mainCharacter` | TEXT | Character voiced |
-| `important` | INTEGER | Featured work flag (0/1) |
+Commit and push — Netlify rebuilds automatically.
 
 ## 🎨 Styling & Themes
 
@@ -235,94 +163,24 @@ The application uses CSS custom properties for theme switching:
 - Primary colors with high contrast
 - Clean, professional appearance
 
-**Dark Theme:**  
+**Dark Theme:**
 - Dark backgrounds with light text
 - Reduced eye strain for night viewing
 
 ### Responsive Breakpoints
 - **Mobile**: < 768px
-- **Tablet**: 768px - 1024px  
+- **Tablet**: 768px - 1024px
 - **Desktop**: > 1024px
-
-## 🧪 Testing & Quality Assurance
-
-### API Testing
-Comprehensive testing documentation available in [API_TESTING.md](API_TESTING.md) with:
-- Complete endpoint documentation
-- Sample requests and responses  
-- Error handling examples
-- Performance testing guidelines
-
-**Quick API Health Check:**
-```bash
-# Start backend server
-cd backend && python server.py
-
-# Test main endpoints
-curl https://carloren-website.onrender.com/api/doblajes
-curl https://carloren-website.onrender.com/api/categories
-```
-
-### Frontend Testing
-```bash
-# Development server with hot reload
-cd frontend && npm run dev
-
-# Production build testing
-npm run build && npm run preview
-```
 
 ## 🚀 Deployment
 
-### Production Setup
+The site is a static build deployed on **Netlify**:
+- Build command: `cd frontend && npm ci && npm run build`
+- Publish directory: `frontend/dist`
+- Deploys automatically on every push (configured in `netlify.toml`)
 
-The application is deployed using a two-tier approach:
-
-#### Frontend Deployment (Netlify)
-```bash
-# Automatic deployment via Netlify
-# Configuration in netlify.toml
-# Build command: cd frontend && npm ci && npm run build
-# Publish directory: frontend/dist
-```
-
-#### Backend Deployment (Render.com)
-```bash
-# Backend hosted at: https://carloren-website.onrender.com
-# Automatic deployment from repository
-```
-
-#### Manual Deployment Script
-For manual deployment or local testing:
-```bash
-# Full deployment script
-./deploy.sh
-
-# Script features:
-# - System dependency checks
-# - Automated frontend build
-# - Backend configuration
-# - Database initialization
-# - Environment setup
-```
-
-### Local Development Build
-```bash
-# Frontend production build
-cd frontend
-npm run build
-# Output: frontend/dist/
-
-# Backend production run
-cd backend
-pip install -r requirements.txt
-python server.py
-```
-
-### Environment Configuration
-- **Node.js**: Version 18+ (specified in netlify.toml)
-- **Python**: Version 3.x required
-- **Databases**: SQLite files created automatically on first run
+### Environment
+- **Node.js**: Version 18+ (specified in `netlify.toml`)
 
 ## 🤝 Contributing
 
@@ -335,14 +193,14 @@ We welcome contributions to improve the Carloren Website! Please follow these gu
 
 ### Development Workflow
 1. Make your changes following the existing code style
-2. Test your changes thoroughly (both frontend and backend)
+2. Test your changes thoroughly
 3. Update documentation if necessary
 4. **Commit** your changes: `git commit -am 'Add: brief description of your feature'`
 5. **Push** to your branch: `git push origin feature/your-feature-name`
 6. **Submit** a Pull Request with a clear description of your changes
 
 ### Code Style Guidelines
-- Use consistent indentation (2 spaces for JavaScript/CSS, 4 spaces for Python)
+- Use consistent indentation (2 spaces for JavaScript/CSS)
 - Follow React best practices and hooks patterns
 - Write descriptive commit messages
 - Include comments for complex logic
@@ -361,4 +219,4 @@ This project is proprietary software owned by Carlos Lorenzo (Carloren). All rig
 
 ---
 
-*Crafted with ❤️ to showcase world-class voice acting talent* • **Updated February 2026**
+*Crafted with ❤️ to showcase world-class voice acting talent* • **Updated August 2026**

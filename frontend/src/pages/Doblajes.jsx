@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
 import DubCard from '../components/DubCard.jsx';
 import { t } from '../utils/translations.js';
-
-const API_URL = 'https://carloren-website.onrender.com/api';
+import doblajesData from '../data/doblajes.json';
 
 function Doblajes({ language }) {
   const [activeCategory, setActiveCategory] = useState('Series');
   const [doblajes, setDoblajes] = useState([]);
   const [contador, setContador] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [sortByImportant, setSortByImportant] = useState(true);
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
@@ -50,19 +47,12 @@ function Doblajes({ language }) {
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [loading]);
+  }, [doblajes]);
 
   useEffect(() => {
-    fetchDoblajes(activeCategory);
-  }, [activeCategory]);
-
-  // Separate effect to handle sorting when sortByImportant changes
-  useEffect(() => {
-    if (doblajes.length > 0) {
-      const sortedData = sortDoblajes(doblajes, sortByImportant);
-      setDoblajes(sortedData);
-    }
-  }, [sortByImportant]);
+    const filtered = doblajesData.filter(item => item.category === activeCategory);
+    setDoblajes(sortDoblajes(filtered, sortByImportant));
+  }, [activeCategory, sortByImportant]);
 
   // Sorting function extracted for reuse
   const sortDoblajes = (data, importantFirst) => {
@@ -96,29 +86,6 @@ function Doblajes({ language }) {
       }
       return b.year - a.year;
     });
-  };
-
-  const fetchDoblajes = async (category) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      let url = `${API_URL}/doblajes?category=${encodeURIComponent(category)}`;
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error('Error al cargar los datos');
-      }
-
-      const data = await response.json();
-      const sortedData = sortDoblajes(data, sortByImportant);
-      setDoblajes(sortedData);
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Error al cargar los datos. Por favor, asegúrate de que el servidor backend esté funcionando.');
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -174,25 +141,7 @@ function Doblajes({ language }) {
 
           {/* Works Grid */}
           <div className="row">
-            {loading && (
-              <div className="col-12">
-                <div className="spinner-container">
-                  <div className="spinner-border text-info" role="status">
-                    <span className="visually-hidden">{t(language, 'common.loading')}</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {error && (
-              <div className="col-12">
-                <div className="alert alert-danger" role="alert">
-                  {t(language, 'common.error')}
-                </div>
-              </div>
-            )}
-
-            {!loading && !error && doblajes.length === 0 && (
+            {doblajes.length === 0 && (
               <div className="col-12">
                 <div className="empty-state">
                   <i className="bi bi-inbox" aria-hidden="true"></i>
@@ -201,7 +150,7 @@ function Doblajes({ language }) {
               </div>
             )}
 
-            {!loading && !error && doblajes.map(item => (
+            {doblajes.map(item => (
               <DubCard key={item.id} item={item} language={language} />
             ))}
           </div>

@@ -1,4 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 
 // Dynamically import all logo images
 const logoModules = import.meta.glob('../assets/logos/*', { eager: true });
@@ -46,61 +49,33 @@ const brands = [
 ];
 
 function BrandCarousel() {
-    const trackRef = useRef(null);
-    const timerRef = useRef(null);
-
-    // Auto-scroll every 5 seconds
-    useEffect(() => {
-        timerRef.current = setInterval(() => {
-            scrollByAmount(0); // px
-        }, 1);
-        return () => clearInterval(timerRef.current);
-    }, []);
-
-    // Helper to scroll by px
-    const scrollByAmount = (amount) => {
-        if (trackRef.current) {
-            const newScrollPosition = trackRef.current.scrollLeft;
-            const totalScrollWidth = trackRef.current.scrollWidth - trackRef.current.clientWidth - 1;
-            console.log({ newScrollPosition, totalScrollWidth });
-
-
-            // Check if we need to loop back to the start
-            if (newScrollPosition >= totalScrollWidth && amount > 0) {
-                trackRef.current.scrollBy({ left: -totalScrollWidth, behavior: 'smooth' });
-            } else if (newScrollPosition <= 0 && amount < 0) {
-                trackRef.current.scrollBy({ left: totalScrollWidth, behavior: 'smooth' });
-            } else {
-                trackRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-            }
-        }
-        resetTimer();
-    };
-
-    const handlePrev = () => { clearInterval(timerRef.current); scrollByAmount(-(3 * (trackRef.current.scrollWidth / brands.length))) };
-    const handleNext = () => { clearInterval(timerRef.current); scrollByAmount(3 * (trackRef.current.scrollWidth / brands.length)) };
-
-    const resetTimer = () => {
-        clearInterval(timerRef.current);
-        timerRef.current = setInterval(() => {
-            scrollByAmount(3 * (trackRef.current.scrollWidth / brands.length));
-        }, 5000);
-    };
+    const swiperRef = useRef(null);
 
     return (
         <div className="container d-flex align-items-center">
-            <button className="carousel-btn" onClick={handlePrev} aria-label="Previous brands"><i className="bi bi-chevron-left"></i></button>
-            <div
+            <button className="carousel-btn" onClick={() => swiperRef.current?.slidePrev()} aria-label="Previous brands"><i className="bi bi-chevron-left"></i></button>
+            <Swiper
+                modules={[Autoplay]}
+                onSwiper={(swiper) => { swiperRef.current = swiper; }}
+                loop={true}
+                autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                spaceBetween={12}
+                slidesPerGroup={3}
+                breakpoints={{
+                    0: { slidesPerView: 3 },
+                    576: { slidesPerView: 4 },
+                    768: { slidesPerView: 5 },
+                    1200: { slidesPerView: 7 },
+                }}
                 className="brand-carousel-track"
-                ref={trackRef}
             >
                 {brands.map((brand, i) => (
-                    <div className="brand-item" key={brand.name + i}>
-                        <img style={{ width: brand.wide ? '100%' : '' }} src={brand.img} alt={brand.name} className={brand.invertible ? "brand-logo invertible" : "brand-logo"} />
-                    </div>
+                    <SwiperSlide className="brand-item" key={brand.name + i}>
+                        <img style={{ width: brand.wide ? '100%' : '' }} src={brand.img} alt={brand.name} loading="lazy" className={brand.invertible ? "brand-logo invertible" : "brand-logo"} />
+                    </SwiperSlide>
                 ))}
-            </div>
-            <button className="carousel-btn" onClick={handleNext} aria-label="Next brands"><i className="bi bi-chevron-right"></i></button>
+            </Swiper>
+            <button className="carousel-btn" onClick={() => swiperRef.current?.slideNext()} aria-label="Next brands"><i className="bi bi-chevron-right"></i></button>
         </div>
     );
 }

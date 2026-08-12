@@ -17,10 +17,11 @@ function DubCard({ item, language }) {
           </div>
         ) : item.image ? (
           <div className={item.category === "Locuciones" ? "card-img-top card-img-top-brand" : "card-img-top"}>
-            <img 
-              className="card-image" 
-              src={item.image} 
-              alt={`${item.title} - ${item.mainCharacter || t(language, 'card.defaultCharacter')}`} 
+            <img
+              className="card-image"
+              src={item.image}
+              alt={`${item.title} - ${item.mainCharacter || t(language, 'card.defaultCharacter')}`}
+              loading="lazy"
             />
           </div>
         ) : null}

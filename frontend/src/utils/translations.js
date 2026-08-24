@@ -4,8 +4,21 @@ export const translations = {
     // Page titles
     pageTitle: {
       home: "Carloren - Carlos Lorenzo",
-      doblajes: "Carloren - Doblajes", 
+      doblajes: "Carloren - Doblajes",
       contacto: "Carloren - Contacto"
+    },
+
+    // Per-page meta descriptions (SEO)
+    meta: {
+      home: {
+        description: "Carlos Lorenzo (Carloren), actor de voz y locutor profesional en Madrid. Doblaje de series, películas, videojuegos, documentales y locuciones publicitarias."
+      },
+      doblajes: {
+        description: "Portfolio completo de doblaje de Carlos Lorenzo: series, películas, documentales, locuciones, audiolibros y videojuegos. Consulta todos sus trabajos como actor de voz."
+      },
+      contacto: {
+        description: "Contacta con Carlos Lorenzo (Carloren) para proyectos de doblaje, locución y voz en off. Actor de voz profesional en Madrid, España."
+      }
     },
 
     // Navigation
@@ -49,7 +62,8 @@ export const translations = {
       sortOptions: {
         important: "Destacados",
         year: "Año"
-      }
+      },
+      fullListTitle: "Listado completo de trabajos"
     },
 
     // Contact page
@@ -95,6 +109,19 @@ export const translations = {
       contacto: "Carloren - Contact"
     },
 
+    // Per-page meta descriptions (SEO)
+    meta: {
+      home: {
+        description: "Carlos Lorenzo (Carloren), professional voice actor and narrator based in Madrid. Dubbing for series, movies, video games, documentaries and commercial voice-overs."
+      },
+      doblajes: {
+        description: "Carlos Lorenzo's complete voice acting portfolio: series, movies, documentaries, voice-overs, audiobooks and video games. Browse all his dubbing work."
+      },
+      contacto: {
+        description: "Get in touch with Carlos Lorenzo (Carloren) for dubbing, voice-over and narration projects. Professional voice actor based in Madrid, Spain."
+      }
+    },
+
     // Navigation
     nav: {
       inicio: "Home",
@@ -136,7 +163,8 @@ export const translations = {
       sortOptions: {
         important: "Featured",
         year: "Year"
-      }
+      },
+      fullListTitle: "Full list of works"
     },
 
     // Contact page

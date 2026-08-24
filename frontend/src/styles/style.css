@@ -351,6 +351,19 @@ body {
     border: none;
 }
 
+/* Instagram's /embed has no "chrome-free" mode: it always renders its own
+   header (avatar, follow button) and footer (like/comment/share icons)
+   around the media. Rendering the iframe at its natural content height and
+   shifting it up crops that chrome away, landing the visible 200px window
+   on the video itself instead of on the follow bar. */
+.card-video-top iframe.instagram-embed {
+    position: absolute;
+    top: -192px;
+    left: 0;
+    width: 100%;
+    height: 683px;
+}
+
 .card-title {
     color: var(--text-color);
 }

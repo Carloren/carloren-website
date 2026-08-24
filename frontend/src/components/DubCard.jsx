@@ -1,6 +1,8 @@
 import { t } from '../utils/translations.js';
 
 function DubCard({ item, language }) {
+  const isInstagram = item.video && item.video.includes('instagram.com');
+
   return (
     <div className="col-lg-4 col-md-6 work-card">
       <article className="card">
@@ -13,6 +15,8 @@ function DubCard({ item, language }) {
               title={`${item.title} - ${item.mainCharacter || t(language, 'card.defaultCharacter')} - Carlos Lorenzo`}
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              className={isInstagram ? 'instagram-embed' : ''}
+              scrolling={isInstagram ? 'no' : undefined}
             ></iframe>
           </div>
         ) : item.image ? (

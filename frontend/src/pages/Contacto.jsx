@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
 import { t } from '../utils/translations.js';
+import { updateMetaTags } from '../utils/seo.js';
 
 function Contacto({ language }) {
-  // Set document title
+  // Set document title and per-page meta tags
   useEffect(() => {
-    document.title = t(language, 'pageTitle.contacto');
+    updateMetaTags({
+      title: t(language, 'pageTitle.contacto'),
+      description: t(language, 'meta.contacto.description'),
+      path: '/contacto',
+    });
   }, [language]);
 
   return (

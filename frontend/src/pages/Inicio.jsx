@@ -3,6 +3,7 @@ import BrandCarousel from '../components/BrandCarousel.jsx';
 import { useNavigate } from 'react-router-dom';
 import DubCard from '../components/DubCard.jsx';
 import { t } from '../utils/translations.js';
+import { updateMetaTags } from '../utils/seo.js';
 import CarlorenLogo from '../assets/images/CarlorenLogo.svg';
 import doblajesData from '../data/doblajes.json';
 
@@ -44,9 +45,13 @@ function Inicio({ language, theme }) {
   const [importantDoblajes] = useState(importantDoblajesData);
   const navigate = useNavigate();
 
-  // Set document title
+  // Set document title and per-page meta tags
   useEffect(() => {
-    document.title = t(language, 'pageTitle.home');
+    updateMetaTags({
+      title: t(language, 'pageTitle.home'),
+      description: t(language, 'meta.home.description'),
+      path: '/',
+    });
   }, [language]);
 
   return (

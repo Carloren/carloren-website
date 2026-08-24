@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import DubCard from '../components/DubCard.jsx';
 import { t } from '../utils/translations.js';
+import { updateMetaTags } from '../utils/seo.js';
 import doblajesData from '../data/doblajes.json';
 
 function Doblajes({ language }) {
@@ -11,9 +12,13 @@ function Doblajes({ language }) {
 
   const categories = ['Series', 'Películas', 'Documentales', 'Locuciones', 'Audiolibros', 'Videojuegos'];
 
-  // Set document title
+  // Set document title and per-page meta tags
   useEffect(() => {
-    document.title = t(language, 'pageTitle.doblajes');
+    updateMetaTags({
+      title: t(language, 'pageTitle.doblajes'),
+      description: t(language, 'meta.doblajes.description'),
+      path: '/doblajes',
+    });
   }, [language]);
 
   useEffect(() => {
@@ -154,6 +159,22 @@ function Doblajes({ language }) {
               <DubCard key={item.id} item={item} language={language} />
             ))}
           </div>
+
+          {/* Full portfolio index across all categories. Kept visible to
+              screen readers (and search engine crawlers) even though only
+              the active category tab is shown above — the tabs otherwise
+              hide every other category's work from anyone who can't click. */}
+          <section className="visually-hidden">
+            <h2>{t(language, 'doblajes.fullListTitle')}</h2>
+            <ul>
+              {doblajesData.map(item => (
+                <li key={`full-${item.id}`}>
+                  {item.title} — {t(language, `doblajes.categories.${item.category}`)} ({item.year})
+                  {item.mainCharacter ? ` — ${item.mainCharacter}` : ''}
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </section>
     </main>

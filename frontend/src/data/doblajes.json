@@ -1,5 +1,85 @@
 [
   {
+    "id": 170,
+    "title": "Repsol: Festival de Málaga con toda la energía",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "https://res.cloudinary.com/db3hkkeai/image/upload/v1762794496/repsol_zdggie.svg",
+    "video": "",
+    "mainCharacter": "Cuña de radio",
+    "important": 0
+  },
+  {
+    "id": 169,
+    "title": "Repsol-Betis: con toda la energía",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/betis.svg",
+    "video": "",
+    "mainCharacter": "Cuña de radio",
+    "important": 0
+  },
+  {
+    "id": 168,
+    "title": "BBVA Engineering: Resiliencia operativa y prevención de riesgos",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/bbva.svg",
+    "video": "",
+    "mainCharacter": "Locución corporativa",
+    "important": 0
+  },
+  {
+    "id": 167,
+    "title": "Estrella Damm: Carta para Esteban",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/estrella-damm.svg",
+    "video": "",
+    "mainCharacter": "Narrador (tono íntimo)",
+    "important": 0
+  },
+  {
+    "id": 166,
+    "title": "Europa en cada paso (UE / Junta de Andalucía)",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/junta-andalucia.svg",
+    "video": "",
+    "mainCharacter": "Cuña de radio",
+    "important": 0
+  },
+  {
+    "id": 165,
+    "title": "Desalia",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/desalia.png",
+    "video": "",
+    "mainCharacter": "Locución corporativa",
+    "important": 0
+  },
+  {
+    "id": 164,
+    "title": "Bechtle: Nuestra historia",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/bechtle.svg",
+    "video": "",
+    "mainCharacter": "Narrador",
+    "important": 0
+  },
+  {
+    "id": 163,
+    "title": "BLISS (Farma Leaders Talento)",
+    "year": 2026,
+    "category": "Locuciones",
+    "image": "/logos/bliss.png",
+    "video": "https://www.instagram.com/p/DZA7NnbKlwk/embed",
+    "mainCharacter": "Corporativo RRSS",
+    "important": 0
+  },
+  {
     "id": 162,
     "title": "Campamento Desventura T5",
     "year": 2026,

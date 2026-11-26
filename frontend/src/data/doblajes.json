@@ -1,5 +1,15 @@
 [
   {
+    "id": 174,
+    "title": "La ladrona de niebla",
+    "year": 2026,
+    "category": "Audiolibros",
+    "image": "https://res.cloudinary.com/db3hkkeai/image/upload/v1795689506/La_ladrona_de_niebla_banner_kb8ji4.jpg",
+    "video": "https://player.cloudinary.com/embed/?cloud_name=db3hkkeai&public_id=Muestra_la_ladrona_de_niebla_qb7ceg&profile=Audiolibros&poster=https://res.cloudinary.com/db3hkkeai/image/upload/v1795689506/La_ladrona_de_niebla_banner_kb8ji4.jpg",
+    "mainCharacter": "Narrador",
+    "important": 1
+  },
+  {
     "id": 173,
     "title": "Cuando el cuerpo dice \"NO\"",
     "year": 2026,
@@ -17,7 +27,7 @@
     "image": "https://res.cloudinary.com/db3hkkeai/image/upload/v1794159435/Paloma_Ca%C3%ADda_saakqd.jpg",
     "video": "https://player.cloudinary.com/embed/?cloud_name=db3hkkeai&public_id=Muestra_corta_Paloma_Ca%C3%ADda_strzcp&profile=Audiolibros&poster=https://res.cloudinary.com/db3hkkeai/image/upload/v1794159435/Paloma_Ca%C3%ADda_saakqd.jpg",
     "mainCharacter": "Prólogo",
-    "important": 0
+    "important": 1
   },
   {
     "id": 171,
